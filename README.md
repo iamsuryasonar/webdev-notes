@@ -145,15 +145,12 @@ there are three types of scopes in javascript-
 - The global scope is the outermost scope in JavaScript.
 - Variables declared outside any function or block have global scope.
 - Global variables are accessible throughout the entire program, including within functions.
-
+```javascript
 const globalVariable = "I am global";
-
 function exampleFunction() {
-
   console.log(globalVariable);  // Accessible in function
-
 }
-
+```
 2.Function Scope:
 
 - Function scope refers to the scope created inside a function.
