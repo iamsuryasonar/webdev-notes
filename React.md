@@ -2094,11 +2094,11 @@ Q. Three important react patterns.
     * Read data from the store with the useSelector hook
     * Get the dispatch function with the useDispatch hook, and dispatch action needed.
 
-Q. Describe basic flow if redux.
+### Q. Describe basic flow if redux.
 
 -> 
 
-**Component dispatches an action(an object with type and payload property), reducer(a function that updates the state) receives it, performs the operation and updates the store, components that are subscribed to the store states are notified. **
+**Component dispatches an action(an object with type and payload property), reducer(a function that updates the state) receives it, performs the operation and updates the store, components that are subscribed to the store states are notified.**
 
 Redux is a state management library commonly used with React, although it can be used with other frameworks as well. The basic flow of Redux involves actions, reducers, and a store. Here's a simplified overview:
 
@@ -2187,13 +2187,13 @@ Redux data flow diagram
 ![alt_text](images/reduxflow.gif "image_tooltip")
 
 
-Q. What is a redux middleware?
+### Q. What is a redux middleware?
 
 -> In Redux, a middleware is a piece of software that provides a way to interact with actions and the state that flows through the Redux application. Middleware sits between the action being dispatched and the moment it reaches the reducer. It allows you to perform additional operations, intercept actions, or modify the behavior of the store.
 
 The basic idea is that middleware can extend the functionality of Redux by providing a layer for handling asynchronous operations, logging, or other side effects.
 
-Q. why redux?
+### Q. why redux?
 
 ->when we have multiple components that need to share and use the same state, especially if those components are located in different parts of the application. Sometimes this can be solved by "lifting state up" to parent components, but that doesn't always help.
 
@@ -2203,7 +2203,7 @@ By defining and separating the concepts involved in state management and enforci
 
 This is the basic idea behind Redux: a single centralized place to contain the global state in your application, and specific patterns to follow when updating that state to make the code predictable.
 
-Q. Thunk
+### Q. Thunk
 
 -> It is a middleware that allows us to return function instead of an action, within redux. 
 
