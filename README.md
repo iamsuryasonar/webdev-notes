@@ -447,7 +447,7 @@ So, the entire expression evaluates to true, and console.log will output true to
 
 -> The ?. (optional chaining) operator in JavaScript is used to safely access properties or methods of an object when there's a possibility that the object might be null or undefined. It allows you to avoid "TypeError" exceptions that would occur if you attempted to access properties or methods of a null or undefined value directly.
 
-In your example, formData?.hint, if formData is null or undefined, accessing hint directly would result in an error. However, by using the ?. operator, you can safely access the hint property, and if formData is null or undefined, the expression will simply evaluate to undefined without causing an error.
+For example, formData?.hint, if formData is null or undefined, accessing hint directly would result in an error. However, by using the ?. operator, you can safely access the hint property, and if formData is null or undefined, the expression will simply evaluate to undefined without causing an error.
 
 ### Q.?? (nullish coalescing operator)
 
