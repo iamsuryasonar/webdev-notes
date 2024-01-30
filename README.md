@@ -5,7 +5,7 @@
     - [Q. Scope chaining or lexical scoping?](#q-scope-chaining-or-lexical-scoping)
     - [Q. Difference between Var, Let and Const?](#q-difference-between-var-let-and-const)
     - [Q. undefined vs null](#q-undefined-vs-null)
-    - [Q.Template literals  S{} amd  \`\`](#qtemplate-literals--s-amd--)
+    - [Q.Template literals  ${} and  \`\`](#qtemplate-literals--s-amd--)
     - [Q. Object.is()](#q-objectis)
     - [Q. == vs ===](#q--vs-)
     - [Q. Optional chaining?](#q-optional-chaining)
@@ -312,7 +312,7 @@ undefined==null //true
 undefined===null //false
 ```
 
-### Q.Template literals  S{} amd  ``
+### Q.Template literals  ${} and  ``
 
 -> Template literals, introduced in ECMAScript 2015 (ES6), are a way to work with strings in JavaScript that allows for easy interpolation of variables and multiline strings. They provide a more convenient and readable syntax for creating strings compared to traditional string concatenation.
 
