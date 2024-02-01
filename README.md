@@ -506,7 +506,7 @@ console.log(booleanEquivalent); // Outputs: true
 
 ### Q. Deep Copy?
 
--> A deep copy, on the other hand, creates a completely independent copy of the original object or array, including all nested values. Changes made to the copy will not affect the original, and vice versa.
+-> A deep copy creates a completely independent copy of the original object or array, including all nested values. Changes made to the copy will not affect the original, and vice versa.
 
 Here's an example of deep copying an object:
 
