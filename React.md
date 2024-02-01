@@ -530,6 +530,14 @@ Reactive values are tracked by React for changes. When any of these values chang
 
 When using the useEffect() hook for example, you need to specify which reactive values the effect depends on by passing them as an array of dependencies. If any of these dependencies change, the effect will be executed again. If no dependencies are specified, the effect will only be executed once when the component is mounted.
 
+### Q.Reactivity in React?
+
+-> React doesn’t have any inbuilt mechanism for COMPLETE reactivity in action such as observe/track the changes in the data model and thereby updating the behavior and view itself. So, we can say React is not Reactive!
+
+The developer should explicitly call state mutation calls to make it sync with the view. If any side effects need to be run, that must be wrapped in useEffect hook. All the side effects get a chance to run on whenever the component renders. Side effects with any dependency will run only if the dependency has any new value compared to the previous one.
+
+All state update requests within an effect, event handlers are batched, and React may update it in a single go asynchronously.
+
 ### Q. Component lifecycle?
 - A component mounts when it’s added to the screen.
 - A component updates when it receives new props or state, usually in response to an interaction.
