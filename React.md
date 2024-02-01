@@ -519,6 +519,21 @@ ReactDOM.render(element, document.getElementById('root'));
 
 -> "props" is short for "properties," and they are a way to pass data from a parent component to a child component. 
 
+### Q. Reactive values?
+-> In React, "reactive values" refer to the values declared directly inside the component body that:
+
+Participate in the React data flow, and;
+Can trigger a re-render of the component when their value changes.
+These values include props, state, and any other variables and functions that are used in the component's rendering logic. Values derived from other reactive values are also reactive. These values can change on a re-render and be recalculated during subsequent renders if they are updated.
+
+Reactive values are tracked by React for changes. When any of these values change, React schedules a re-render of the component so that it can update the output to reflect the new values. For this reason, it's crucial (for hooks that support dependency array) to include all reactive values the hook depends on, in its dependency array. Otherwise, the callback of the hook may not execute when expected.
+
+When using the useEffect() hook for example, you need to specify which reactive values the effect depends on by passing them as an array of dependencies. If any of these dependencies change, the effect will be executed again. If no dependencies are specified, the effect will only be executed once when the component is mounted.
+
+### Q. Component lifecycle?
+- A component mounts when it’s added to the screen.
+- A component updates when it receives new props or state, usually in response to an interaction.
+- A component unmounts when it’s removed from the screen.
 
 ### Q.Props drilling?
 
