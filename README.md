@@ -534,7 +534,7 @@ shallowCopy.address.city = 'delhi';
 console.log(originalObj.address.city); // Output: delhi
 ```
 
-In this example, Object.assign() is used to create a shallow copy of originalObj. Modifying the age property in the shallowCopy object also affects the originalObj because they share the same reference.
+In this example, Object.assign() is used to create a shallow copy of originalObj. Modifying the city property in the shallowCopy object also affects the originalObj because they share the same reference.
 
 ### Q. Default parameters in a function
 
