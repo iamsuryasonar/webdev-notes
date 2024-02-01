@@ -469,7 +469,7 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
   
 This process is recursive: if the updated component returns some other component, React will render that component next, and if that component also returns something, it will render that component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
 
-- During the initial render, React will create the DOM nodes for elements eg.<section>, <h1> etc tags.
+- During the initial render, React will create the DOM nodes for every elements.
 - During a re-render, React will calculate which of their properties, if any, have changed since the previous render. It won’t do anything with that information until the next step, the commit phase.
 
 After rendering (calling) your components, React will modify the DOM.
