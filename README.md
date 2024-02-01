@@ -124,6 +124,11 @@ javascript object guess output problems:
 
 -> Webpack is a popular module bundler for JavaScript applications. It is primarily used to manage and bundle the dependencies and assets of a web application, such as JavaScript files, CSS stylesheets, images, and other resources.Webpack takes a modular approach to application development, allowing developers to split their codebase into smaller modules that can be organised and managed more efficiently. It analyses the dependencies between these modules and creates a dependency graph. Based on this graph, it then bundles the modules together into a single or multiple optimised bundles that can be loaded by the browser.
 
+### Q. Tree shaking?
+
+Tree shaking is a technique that removes unused code from your JavaScript bundles, making them smaller and faster to load. It can help you optimize your web performance.
+It is done by tools like webpack.
+
 ### Q. What is Babel?
 
 -> Babel is a widely used JavaScript compiler that allows developers to write code in the latest version of JavaScript (ES6/ES7/ESNext) and convert it into backward-compatible versions that can run in older environments. It enables developers to use modern JavaScript features and syntax while ensuring compatibility with older browsers and platforms.
