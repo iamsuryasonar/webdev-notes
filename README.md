@@ -526,10 +526,12 @@ In this example, JSON.stringify() is used to convert the originalObj to a JSON s
 Here's an example of shallow copying an object:
 
 ```javascript
-const originalObj = { name: 'John', age: 30 };
+const originalObj = { name: 'John', age: 30,address:{
+  city:'mumbai'
+}};
 const shallowCopy = Object.assign({}, originalObj);
-shallowCopy.age = 40;
-console.log(originalObj.age); // Output: 40
+shallowCopy.address.city = 'delhi';
+console.log(originalObj.address.city); // Output: delhi
 ```
 
 In this example, Object.assign() is used to create a shallow copy of originalObj. Modifying the age property in the shallowCopy object also affects the originalObj because they share the same reference.
