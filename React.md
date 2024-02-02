@@ -2268,6 +2268,24 @@ This is the basic idea behind Redux: a single centralized place to contain the g
 
 It is a standard way to write async logic inside redux.
 
+### Q.Action creators?
+-> An action creator is a function that literally creates an action object. In Redux, action creators simply return an action object and pass the argument value if necessary.
+changeWheel action creator sample :
+
+```javascript
+const changeWheel = (value) => {
+  return {
+    type: 'CHANGE_WHEEL',
+    value
+  }
+}
+```
+
+These action creators are passed to the dispatch function as the result value, and the dispatch is executed.
+
+```javascript
+dispatch(changeWheel(size))
+```
 
 # Resources:
 
