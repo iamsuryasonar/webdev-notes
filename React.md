@@ -2245,6 +2245,12 @@ Redux data flow diagram
 
 ![alt_text](images/reduxflow.gif "image_tooltip")
 
+### Q.Redux set up
+-> 
+1. Define reducers,
+2. Create a store,
+3. Create action creators
+4. Tie the store to the react views
 
 ### Q. What is a redux middleware?
 
