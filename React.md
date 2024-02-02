@@ -396,6 +396,10 @@ Each of these storage mechanisms has its strengths and limitations, and the choi
 
 # React  questions and answers  
 
+https://www.newline.co/fullstack-react/30-days-of-react/
+
+https://www.educative.io/courses/building-teslas-battery-range-calculator-with-react-and-redux
+
 
 ### Q.SPA?
 
@@ -2267,6 +2271,16 @@ One way to solve this is to extract the shared state from the components, and pu
 By defining and separating the concepts involved in state management and enforcing rules that maintain independence between views and states, we give our code more structure and maintainability.
 
 This is the basic idea behind Redux: a single centralized place to contain the global state in your application, and specific patterns to follow when updating that state to make the code predictable.
+
+### Q. Middleware?
+Middleware provides a third-party extension point between dispatching an action and handing the action off to the reducer:
+
+[ Action ] <-> [ Middleware ] <-> [ Dispatcher ]
+
+Examples of middleware include logging, crash reporting, routing, handling asynchronous requests, etc.
+
+Middleware sits between the action and the reducer. It can listen for all dispatches and execute code with the details of the actions and the current states.
+
 
 ### Q. Thunk
 
