@@ -2193,40 +2193,13 @@ return <div dangerouslySetInnerHTML={markup} />;
 dangerouslySetInnerHTML: An object of the form { __html: '&lt;p>some html&lt;/p>' } with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
 
 Q. Three important react patterns.
-
 ->
-
-
-
-*  Higher order components.
+* Higher order components.
 * Render prop.
 * Custom hooks.
 
-
-### Q. Implementation syntax of React redux
-
-
-
-* Create a Redux store with configureStore
-    * configureStore accepts a reducer function as a named argument
-    * configureStore automatically sets up the store with good default settings
-* Provide the Redux store to the React application components
-    * Put a React Redux &lt;Provider> component around your &lt;App />
-    * Pass the Redux store as &lt;Provider store= {store}>
-* Create a Redux "slice" reducer with createSlice
-    * Call createSlice with a string name, an initial state, and named reducer functions
-    * Reducer functions may "mutate" the state using Immer
-    * Export the generated slice reducer and action creators
-* Use the React Redux
-* useSelector/useDispatch hooks in React
-* components
-    * Read data from the store with the useSelector hook
-    * Get the dispatch function with the useDispatch hook, and dispatch action needed.
-
 ### Q. Describe basic flow if redux.
-
 -> 
-
 **Component dispatches an action(an object with type and payload property), reducer(a function that updates the state) receives it, performs the operation and updates the store, components that are subscribed to the store states are notified.**
 
 Redux is a state management library commonly used with React, although it can be used with other frameworks as well. The basic flow of Redux involves actions, reducers, and a store. Here's a simplified overview:
@@ -2293,8 +2266,6 @@ const store = createStore(counterReducer);
 ```
 **we can break these steps into more detail:**
 
-
-
 * Initial setup:
     * A Redux store is created using a root reducer function
     * The store calls the root reducer once, and saves the return value as its initial state
@@ -2310,9 +2281,6 @@ const store = createStore(counterReducer);
 
 Redux data flow diagram
 
-
-
-
 ![alt_text](images/reduxflow.gif "image_tooltip")
 
 ### Q.Redux set up
@@ -2321,6 +2289,116 @@ Redux data flow diagram
 2. Create a store,
 3. Create action creators
 4. Tie the store to the react views
+
+### Q. Implementation syntax of React redux
+
+* Create a Redux store with configureStore
+    * configureStore accepts a reducer function as a named argument
+    * configureStore automatically sets up the store with good default settings
+* Provide the Redux store to the React application components
+    * Put a React Redux &lt;Provider> component around your &lt;App />
+    * Pass the Redux store as &lt;Provider store= {store}>
+* Create a Redux "slice" reducer with createSlice
+    * Call createSlice with a string name, an initial state, and named reducer functions
+    * Reducer functions may "mutate" the state using Immer
+    * Export the generated slice reducer and action creators
+* Use the React Redux
+* useSelector/useDispatch hooks in React
+* components
+    * Read data from the store with the useSelector hook
+    * Get the dispatch function with the useDispatch hook, and dispatch action needed.
+      
+### Q.Action creators?
+-> An action creator is a function that literally creates an action object. In Redux, action creators simply return an action object and pass the argument value if necessary.
+changeWheel action creator sample :
+
+```javascript
+const changeWheel = (value) => {
+  return {
+    type: 'CHANGE_WHEEL',
+    value
+  }
+}
+```
+
+These action creators are passed to the dispatch function as the result value, and the dispatch is executed.
+
+```javascript
+dispatch(changeWheel(size))
+```
+
+### Q. How the reducer function is invoked after action creator is dispatched?
+
+Action creator:
+```javascript
+// actions.js
+export const incrementCounter = () => ({
+  type: 'INCREMENT_COUNTER',
+});
+```
+
+Reducer:
+```javascript
+// reducers.js
+const initialState = {
+  counter: 0,
+};
+
+const counterReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'INCREMENT_COUNTER':
+      return {
+        ...state,
+        counter: state.counter + 1,
+      };
+    default:
+      return state;
+  }
+};
+
+export default counterReducer;
+```
+Store set up:
+```javacript
+// store.js
+import { createStore } from 'redux';
+import counterReducer from './reducers';
+
+const store = createStore(counterReducer);
+
+export default store;
+```
+Dispatching action:
+```javascript
+// Some React component
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { incrementCounter } from './actions';
+
+const MyComponent = () => {
+  const dispatch = useDispatch();
+
+  const handleIncrement = () => {
+    dispatch(incrementCounter());
+  };
+
+  return (
+    <div>
+      <p>Counter: {counter}</p>
+      <button onClick={handleIncrement}>Increment</button>
+    </div>
+  );
+};
+```
+
+Dispatch flow:
+
+- When you click the "Increment" button, handleIncrement is called, which in turn dispatches the incrementCounter action.
+- The dispatched action flows through the Redux store.
+- The store passes the action to the reducer (counterReducer).
+- The reducer checks the action type and performs the corresponding state update.
+- The state is then updated, triggering a re-render if connected components are subscribed to this part of the state.
+- The updated state is available for the component to display or use as needed.
 
 ### Q. What is a redux middleware?
 
@@ -2353,25 +2431,6 @@ Middleware sits between the action and the reducer. It can listen for all dispat
 -> It is a middleware that allows us to return function instead of an action, within redux. 
 
 It is a standard way to write async logic inside redux.
-
-### Q.Action creators?
--> An action creator is a function that literally creates an action object. In Redux, action creators simply return an action object and pass the argument value if necessary.
-changeWheel action creator sample :
-
-```javascript
-const changeWheel = (value) => {
-  return {
-    type: 'CHANGE_WHEEL',
-    value
-  }
-}
-```
-
-These action creators are passed to the dispatch function as the result value, and the dispatch is executed.
-
-```javascript
-dispatch(changeWheel(size))
-```
 
 # Resources:
 
