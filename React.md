@@ -2192,7 +2192,7 @@ return <div dangerouslySetInnerHTML={markup} />;
 
 dangerouslySetInnerHTML: An object of the form { __html: '&lt;p>some html&lt;/p>' } with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
 
-Q. Three important react patterns.
+### Q. Three important react patterns.
 ->
 * Higher order components.
 * Render prop.
