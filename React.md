@@ -443,11 +443,42 @@ Both Webpack and Parcel are widely used in the JavaScript ecosystem, with each o
 Here are some key features of JSX:
 
 
-
 1. HTML-like Syntax: JSX resembles HTML syntax and allows you to write elements and components in a format that closely resembles HTML, making it more intuitive and familiar for web developers.
 2. Embedding Expressions: JSX allows you to embed JavaScript expressions within curly braces {}. This enables dynamic content rendering, variable interpolation, and conditional rendering directly within the JSX code.
 3. Component Rendering: JSX allows you to define and render React components in a straightforward and concise manner. You can use custom components alongside built-in HTML elements to create complex UIs.
 4. Attribute Syntax: JSX uses a familiar attribute syntax similar to HTML, making it easy to set element attributes, event handlers, and other properties directly within the JSX code.
+
+   
+Each JSX element is just syntactic sugar for calling 
+```javascript
+React.createElement(component, props, ...children)
+```
+. So, anything you can do with JSX can also be done with just plain JavaScript.
+
+For example, this code written with JSX:
+```javascript
+class Hello extends React.Component {
+  render() {
+    return <div>Hello {this.props.toWhat}</div>;
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Hello toWhat="World" />);
+```
+can be compiled to this code that does not use JSX:
+
+```javascript
+class Hello extends React.Component {
+  render() {
+    return React.createElement('div', null, `Hello ${this.props.toWhat}`);
+  }
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(React.createElement(Hello, {toWhat: 'World'}, null));
+```
+Babel compiler is used to convert jsx to javascript.
 
 ### Q. Phases of react.
 ->
