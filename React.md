@@ -1598,6 +1598,41 @@ React will set the current property back to null when the node is removed from t
 
 Note: We could reuse some stateful logic between components using Higher-order component and render-prop. Custom Hooks also let us do this.
 
+### Q.useCallback()
+-> useCallback caches a function between re-renders until its dependencies change.
+
+```javascript
+import { useCallback } from 'react';
+
+function ProductPage({ productId, referrer, theme }) {
+  const handleSubmit = useCallback((orderDetails) => {
+    post('/product/' + productId + '/buy', {
+      referrer,
+      orderDetails,
+    });
+  }, [productId, referrer]);
+```
+
+You need to pass two things to useCallback:
+
+1. A function definition that you want to cache between re-renders.
+2. A list of dependencies including every value within your component that’s used inside your function.
+
+On the initial render, the returned function you’ll get from useCallback will be the function you passed.
+
+On the following renders, React will compare the dependencies with the dependencies you passed during the previous render. If none of the dependencies have changed (compared with Object.is), useCallback will return the same function as before. Otherwise, useCallback will return the function you passed on this render.
+
+In other words, useCallback caches a function between re-renders until its dependencies change.
+
+We know that,
+By default, when a component re-renders, React re-renders all of its children recursively. 
+suppose we have a function that we pass to the child component that is wrapped with memo (which causes it not to render if props are same as previous render).
+
+In JavaScript, a function () {} or () => {} always creates a different function, similar to how the {} object literal always creates a new object. 
+
+Memo optimisation did not work since for every parent component re-render child component will have a new function as prop.
+
+So, to solve this issue, we have useCallback that caches the function when dependencies are same as before. 
 
 ### Q.Higher-order component?
 
