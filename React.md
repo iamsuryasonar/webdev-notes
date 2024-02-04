@@ -2359,7 +2359,7 @@ const counterReducer = (state = initialState, action) => {
 export default counterReducer;
 ```
 Store set up:
-```javacript
+```javascript
 // store.js
 import { createStore } from 'redux';
 import counterReducer from './reducers';
