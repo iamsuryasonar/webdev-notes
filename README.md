@@ -2532,6 +2532,17 @@ console.log('   Hello, World!   '.trimStart()); // Output: Hello, World!
 
 ```
 
+
+### Boxing and unboxing
+->  
+Boxing is the process in which a primitive value is wrapped in an Object. When a primitive type is treated as an object, e.g., calling the toUpperCase() function, JavaScript would automatically wrap the primitive type into the corresponding object type. This new object type is then linked to the related built-in <.prototype>, so you can use prototype methods on primitive types.
+
+[boxing unboxing in js](https://www.codingninjas.com/studio/library/javascript-boxing-and-unboxing)
+
+
+
+
+
 **JavaScript Problems**
 
 - Reverse a String
