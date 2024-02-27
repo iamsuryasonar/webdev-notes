@@ -13,11 +13,18 @@
     - [Q.SPA?](#qspa)
     - [Q. Bundler(webpack and parcel)](#q-bundlerwebpack-and-parcel)
     - [Q.JSX?](#qjsx)
+    - [Q. Phases of react.](#q-phases-of-react)
     - [Q. working of dom in react (reconciliation in react)](#q-working-of-dom-in-react-reconciliation-in-react)
     - [Q. ReactDOM.render()?](#q-reactdomrender)
     - [Q. Components?](#q-components)
     - [Q.Stateful and Stateless component?](#qstateful-and-stateless-component)
+    - [Q.What are controlled components?](#qwhat-are-controlled-components)
+    - [Q.What is equivalent of the following using React.createElement?](#qwhat-is-equivalent-of-the-following-using-reactcreateelement)
     - [Q. props?](#q-props)
+    - [Q.What is the difference between state and props?](#qwhat-is-the-difference-between-state-and-props)
+    - [Q. Reactive values?](#q-reactive-values)
+    - [Q.Reactivity in React?](#qreactivity-in-react)
+    - [Q. Component lifecycle?](#q-component-lifecycle)
     - [Q.Props drilling?](#qprops-drilling)
     - [Q.Fragment?](#qfragment)
     - [Q.Phases of a React component's lifecycle](#qphases-of-a-react-components-lifecycle)
@@ -38,6 +45,7 @@
     - [Q. useContext?](#q-usecontext)
     - [Q.useMemo](#qusememo)
     - [Q. useRef](#q-useref)
+    - [Q.useCallback()](#qusecallback)
     - [Q.Higher-order component?](#qhigher-order-component)
     - [Q. Render-prop?](#q-render-prop)
     - [Q. forwardRef?](#q-forwardref)
@@ -51,17 +59,50 @@
     - [Q. Lazy-loading components and Suspense](#q-lazy-loading-components-and-suspense)
     - [Q.\<StrictMode\>](#qstrictmode)
     - [Q.Pagination?](#qpagination)
+    - [Q.Infinite Scroll pagination](#qinfinite-scroll-pagination)
     - [Q.preventDefault()](#qpreventdefault)
     - [Q. Dangerously setting the inner HTML?](#q-dangerously-setting-the-inner-html)
+    - [Q. Three important react patterns.](#q-three-important-react-patterns)
+- [Redux](#redux)
+    - [Q. Describe basic flow if redux.](#q-describe-basic-flow-if-redux)
+    - [Q.Redux set up](#qredux-set-up)
     - [Q. Implementation syntax of React redux](#q-implementation-syntax-of-react-redux)
+    - [Q.Action creators?](#qaction-creators)
+    - [Q. How the reducer function is invoked after action creator is dispatched?](#q-how-the-reducer-function-is-invoked-after-action-creator-is-dispatched)
+    - [Q. What is a redux middleware?](#q-what-is-a-redux-middleware)
+    - [Q. why redux?](#q-why-redux)
+    - [Q. Middleware?](#q-middleware)
+    - [Q. Thunk](#q-thunk)
+    - [Q.Redux Toolkit](#qredux-toolkit)
+      - [Redux Slices](#redux-slices)
+      - [Creating Slice Reducers and Actions](#creating-slice-reducers-and-actions)
+      - [But what about action creators?](#but-what-about-action-creators)
+      - [Thunk?](#thunk)
+      - [Reading Data with useSelector](#reading-data-with-useselector)
+      - [extraReducers?](#extrareducers)
+- [Problems](#problems)
+    - [Q.Why do React component names have to start with capital letters?](#qwhy-do-react-component-names-have-to-start-with-capital-letters)
+    - [Q.What is the difference between npx and npm?](#qwhat-is-the-difference-between-npx-and-npm)
+    - [Q.How to programmatically navigate using latest React Router version?](#qhow-to-programmatically-navigate-using-latest-react-router-version)
+    - [Q.How to pass data between sibling components using React router?](#qhow-to-pass-data-between-sibling-components-using-react-router)
+    - [Q.How to set focus on an input field after component mounts on UI?](#qhow-to-set-focus-on-an-input-field-after-component-mounts-on-ui)
+    - [Q.Why virtual DOM is faster to update than real DOM?](#qwhy-virtual-dom-is-faster-to-update-than-real-dom)
+    - [Q.How to access the latest value of a text input field in a React component using the 'useRef' hook?](#qhow-to-access-the-latest-value-of-a-text-input-field-in-a-react-component-using-the-useref-hook)
+    - [Q.Create a React component that renders a nested list from a given array of objects.](#qcreate-a-react-component-that-renders-a-nested-list-from-a-given-array-of-objects)
+    - [Q.What is the difference between useEffect and useLayoutEffect?](#qwhat-is-the-difference-between-useeffect-and-uselayouteffect)
+    - [Q.Write a custom hook which can be used to debounce user's input.](#qwrite-a-custom-hook-which-can-be-used-to-debounce-users-input)
+    - [Q.Write a custom hook to copy text to clipboard.](#qwrite-a-custom-hook-to-copy-text-to-clipboard)
+    - [Q.How to Use the 'useId' Hook to generate unique ids.](#qhow-to-use-the-useid-hook-to-generate-unique-ids)
+    - [Q. Why React's useDeferredValue hook is useful?](#q-why-reacts-usedeferredvalue-hook-is-useful)
+    - [Q.How to detect 'click' outside React component?](#qhow-to-detect-click-outside-react-component)
+    - [Q.3 ways to solve functions, arrays, objects recreated on every render.](#q3-ways-to-solve-functions-arrays-objects-recreated-on-every-render)
+  - [Extra question to prepare- How can we fetch API data without using useEffect hook?](#extra-question-to-prepare--how-can-we-fetch-api-data-without-using-useeffect-hook)
 - [Resources:](#resources)
-    - [3 ways to solve functions, arrays, objects recreated on every render.](#3-ways-to-solve-functions-arrays-objects-recreated-on-every-render)
 - [Git:](#git)
 
 
+
 # Html and css
-
-
 
 * form and validation 
 * ways to centre a div
@@ -583,11 +624,30 @@ ReactDOM.render(element, document.getElementById('root'));
 
     Stateless component is a component that can receive data and render it, but does not manage or track changes to that data.
 
+### Q.What are controlled components?
+In HTML, form elements such as <input>, <textarea>, and <select> typically maintain their own state and update it based on user input. When a user submits a form the values from the mentioned elements are sent with the form. With React it works differently. The component containing the form will keep track of the value of the input in it's state and will re-render the component each time the callback function e.g. onChange is fired as the state will be updated. An input form element whose value is controlled by React in this way is called a controlled component.
 
+### Q.What is equivalent of the following using React.createElement?
+```javascript
+const element = <h1 className="greeting">Hello, world!</h1>;
+```
+->
+```javascript
+const element = React.createElement(
+  "h1",
+  { className: "greeting" },
+  "Hello, world!"
+);
+```
 
 ### Q. props?
 
 -> "props" is short for "properties," and they are a way to pass data from a parent component to a child component. 
+
+### Q.What is the difference between state and props?
+-> State is a data structure that starts with a default value when a Component mounts. It may be mutated across time, mostly as a result of user events.
+
+Props (short for properties) are a Component's configuration. They are received from above and immutable as far as the Component receiving them is concerned. A Component cannot change its props, but it is responsible for putting together the props of its child Components. Callback functions can also be passed in as props.
 
 ### Q. Reactive values?
 -> In React, "reactive values" refer to the values declared directly inside the component body that:
@@ -2135,7 +2195,6 @@ const PaginationComponent = () => {
 export default PaginationComponent;
 ```
 
-
 In this example, we assume you have data that you want to display in paginated form. The data array contains all the items, and the itemsPerPage variable specifies how many items to display per page. The currentPage state variable keeps track of the currently active page.
 
 The slice method is used to extract a subset of data based on the current page and items per page. The pageNumbers array is generated based on the total number of items and items per page, and it is used to display the page numbers for navigation.
@@ -2144,6 +2203,64 @@ Clicking on a page number triggers the handleClick function, which updates the c
 
 You can integrate this pagination component with your data and UI to implement pagination in your React application.
 
+### Q.Infinite Scroll pagination
+->
+```javascript
+import React, { useState, useEffect, useRef } from 'react';
+
+function InfinitePagination() {
+  const [page, setPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const observer = useRef();
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://api.example.com/data?page=${page}`)
+      .then(response => response.json())
+      .then(newData => {
+        setData(prevData => [...prevData, ...newData]);
+        setLoading(false);
+      });
+  }, [page]);
+
+  useEffect(() => {
+    const options = {
+      root: null, //This property specifies the element that is used as the viewport for checking visibility of the target. If null, the viewport is the browser's viewport. In this example, root is set to null, which means that the browser's viewport is used as the viewport for checking visibility.
+      rootMargin: '0px', // This property specifies a margin around the root element's bounding box. The margin can be specified in pixels or as a percentage of the root element's size. A positive value expands the root element's bounding box, while a negative value shrinks it. In this example, rootMargin is set to '0px', which means that there is no margin around the root element's bounding box.
+      threshold: 1.0,//This property specifies the percentage of the target element's visibility that triggers the observer's callback. For example, a value of 1.0 means that the observer's callback is triggered when the target element is fully visible, while a value of 0.5 means that the observer's callback is triggered when at least 50% of the target element is visible. 
+    };
+
+    observer.current = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !loading) {
+        setPage(prevPage => prevPage + 1);
+      }
+    }, options);
+
+    if (observer.current) {
+      observer.current.observe(document.getElementById('scroll-trigger'));
+    }
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+    };
+  }, [loading]);
+
+  return (
+    <div>
+      {data.map(item => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+      <div id="scroll-trigger" style={{ height: '10px' }}></div>
+      {loading && <div>Loading...</div>}
+    </div>
+  );
+}
+
+export default InfinitePagination;
+```
 
 ### Q.preventDefault()
 
@@ -2197,6 +2314,8 @@ dangerouslySetInnerHTML: An object of the form { __html: '&lt;p>some html&lt;/p>
 * Higher order components.
 * Render prop.
 * Custom hooks.
+
+# Redux 
 
 ### Q. Describe basic flow if redux.
 -> 
@@ -2432,6 +2551,669 @@ Middleware sits between the action and the reducer. It can listen for all dispat
 
 It is a standard way to write async logic inside redux.
 
+### Q.Redux Toolkit
+-> Creating the Redux Store:
+
+```javascript
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from '../features/counter/counterSlice'
+
+export default configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+})
+```
+The Redux store is created using the configureStore function from Redux Toolkit. configureStore requires that we pass in a reducer argument.
+
+#### Redux Slices
+A "slice" is a collection of Redux reducer logic and actions for a single feature in your app, typically defined together in a single file. The name comes from splitting up the root Redux state object into multiple "slices" of state.
+
+#### Creating Slice Reducers and Actions
+
+```javascript
+import { createSlice } from '@reduxjs/toolkit'
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    value: 0
+  },
+  reducers: {
+    increment: state => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value += 1
+    },
+    decrement: state => {
+      state.value -= 1
+    },
+    incrementByAmount: (state, action) => {
+      state.value += action.payload
+    }
+  }
+})
+
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+export default counterSlice.reducer
+
+```
+We know that actions are plain objects with a type field, the type field is always a string, and we typically have "action creator" functions that create and return the action objects. So where are those action objects, type strings, and action creators defined?
+
+The answer is we don't have to define it, Redux toolkit does that for us.
+Redux Toolkit has a function called createSlice, which takes care of the work of generating action type strings, action creator functions, and action objects. All you have to do is define a name for this slice, write an object that has some reducer functions in it, and it generates the corresponding action code automatically.
+The string from the name option is used as the first part of each action type, and the key name of each reducer function is used as the second part. So, the "counter" name + the "increment" reducer function generated an action type of {type: "counter/increment"}.
+
+#### But what about action creators?
+Well, createSlice automatically generates action creators with the same names as the reducer functions we wrote. 
+
+In Redux, our reducers are never allowed to mutate the original / current state values!
+
+There are several reasons why you must not mutate state in Redux:
+
+- It causes bugs, such as the UI not updating properly to show the latest values
+- It makes it harder to understand why and how the state has been updated
+- It makes it harder to write tests
+- It breaks the ability to use "time-travel debugging" correctly
+- It goes against the intended spirit and usage patterns for Redux
+
+Writing immutable update logic by hand is hard, and accidentally mutating state in reducers is the single most common mistake Redux users make.
+
+That's why Redux Toolkit's createSlice function lets you write immutable updates an easier way!
+
+createSlice uses a library called Immer inside. Immer uses a special JS tool called a Proxy to wrap the data you provide, and lets you write code that "mutates" that wrapped data. But, Immer tracks all the changes you've tried to make, and then uses that list of changes to return a safely immutably updated value, as if you'd written all the immutable update logic by hand.
+
+#### Thunk?
+A thunk is a specific kind of Redux function that can contain asynchronous logic.
+
+Thunks are written using two functions:
+
+- An inside thunk function, which gets dispatch and getState as arguments
+- The outside creator function, which creates and returns the thunk function
+
+Using thunks requires that the redux-thunk middleware (a type of plugin for Redux) be added to the Redux store when it's created. Fortunately, Redux Toolkit's configureStore function already sets that up for us automatically.
+
+When you need to make AJAX calls to fetch data from the server, you can put that call in a thunk. 
+
+```javascript
+// the outside "thunk creator" function
+const fetchUserById = userId => {
+  // the inside "thunk function"
+  return async (dispatch, getState) => {
+    try {
+      // make an async call in the thunk
+      const user = await userAPI.fetchById(userId)
+      // dispatch an action when we get the response back
+      dispatch(userLoaded(user))
+    } catch (err) {
+      // If something went wrong, handle it here
+    }
+  }
+}
+```
+
+#### Reading Data with useSelector
+The useSelector hook lets our component extract whatever pieces of data it needs from the Redux store state.
+Our components can't talk to the Redux store directly, because we're not allowed to import it into component files. But, useSelector takes care of talking to the Redux store behind the scenes for us.
+
+Any time an action has been dispatched and the Redux store has been updated, useSelector will re-run our selector function. If the selector returns a different value than last time, useSelector will make sure our component re-renders with the new value.
+
+Dispatching Actions with useDispatch
+
+useDispatch allows us to dispatch actions using action creators.
+
+```javascript
+const dispatch = useDispatch()
+```
+
+From there, we can dispatch actions when the user does something like clicking on a button:
+
+```javascript
+<button
+  className={styles.button}
+  aria-label="Increment value"
+  onClick={() => dispatch(increment())}
+>
+  +
+</button>
+```
+
+How to import the store?
+
+```javascript
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import store from './app/store'
+import { Provider } from 'react-redux'
+import * as serviceWorker from './serviceWorker'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+
+#### extraReducers?
+There are times when a slice reducer needs to respond to other actions that weren't defined as part of this slice's reducers field. We can do that using the slice extraReducers field. Basically it allows us to create actions outside the slice.
+
+The builder object in extraReducers provides methods that let us define additional case reducers that will run in response to actions defined outside of the slice:
+
+- builder.addCase(actionCreator, reducer): defines a case reducer that handles a single known action type based on either an RTK action creator or a plain action type string
+- builder.addMatcher(matcher, reducer): defines a case reducer that can run in response to any action where the matcher function returns true
+- builder.addDefaultCase(reducer): defines a case reducer that will run if no other case reducers were executed for this action.
+- You can chain these together, like builder.addCase().addCase().addMatcher().addDefaultCase(). If multiple matchers match the action, they will run in the order they were defined.
+
+```javascript
+export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
+  const response = await client.get('/fakeApi/posts')
+  return response.data
+})
+
+const postsSlice = createSlice({
+  name: 'posts',
+  initialState,
+  reducers: {
+    // omit existing reducers here
+  },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchPosts.pending, (state, action) => {
+        state.status = 'loading'
+      })
+      .addCase(fetchPosts.fulfilled, (state, action) => {
+        state.status = 'succeeded'
+        // Add any fetched posts to the array
+        state.posts = state.posts.concat(action.payload)
+      })
+      .addCase(fetchPosts.rejected, (state, action) => {
+        state.status = 'failed'
+        state.error = action.error.message
+      })
+  }
+})
+```
+
+We'll handle all three action types that could be dispatched by the thunk, based on the Promise we returned:
+
+- When the request starts, we'll set the status enum to 'loading'
+- If the request succeeds, we mark the status as 'succeeded', and add the fetched posts to state.posts
+- If the request fails, we'll mark the status as 'failed', and save any error message into the state so we can display it.
+
+# Problems
+
+### Q.Why do React component names have to start with capital letters?
+In JSX, lowercase tag names are considered to be HTML tags. However, lowercase tag names with a dot (property accessor) aren't.
+
+```javascript
+<person /> compiles to React.createElement('person') (html tag)
+<Person /> compiles to React.createElement(Person)
+<obj.person /> compiles to React.createElement(obj.person)
+// Wrong! This is a component and should be in uppercase.
+function person(props) {
+  // Correct! This usage of <div> is correct because div is a valid element.
+  return <div>{props.isLearning ? "Great!" : "Call Mom!"}</div>;
+}
+
+function App() {
+  // Wrong! React thinks <person /> is a HTML tag because it's not capitalized.
+  return <person isLearning={true} />;
+}
+
+// Correct! This is a component and should be capitalized
+function Person(props) {
+  // Correct! This usage of <div> is correct because div is a valid element.
+  return <div>{props.isLearning ? "Great!" : "Call Mom!"}</div>;
+}
+
+function App() {
+  // Correct! React knows <Person /> is a component because it's capitalized.
+  return <Person isLearning={true} />;
+}
+```
+
+### Q.What is the difference between npx and npm?
+NPM is a package manager and can be used to install node.js packages.
+NPX is a tool to execute node.js packages.
+It doesn't matter whether you installed that package globally or locally. NPX will temporarily install it and run it. NPM also can run packages if you configure a package.json file.
+
+So if you want to check/run a node package quickly without installing it - use NPX.
+
+'create-react-app' is a npm package that is expected to be run only once in a project's lifecycle. Hence, it is preferred to use npx to install and run it in a single step.
+
+> npx create-react-app codinn
+npM - Manager
+npX - Execute
+
+### Q.How to programmatically navigate using latest React Router version?
+->
+```javascript
+//old - v5
+import { useHistory } from "react-router-dom";
+
+function HomeButton() {
+  let history = useHistory();
+  history.push('/some/path') here
+};
+
+//new - v6+
+import { useNavigate } from "react-router-dom";
+
+function SignupForm() {
+  let navigate = useNavigate();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    await submitForm(event.target);
+    navigate("../success", { replace: true });
+  }
+
+  return <form onSubmit={handleSubmit}>{/* ... */}</form>;
+}
+
+//or
+import { redirect } from "react-router-dom";
+
+const loader = async () => {
+  const user = await getUser();
+  if (!user) {
+    return redirect("/login");
+  }
+};
+```
+
+### Q.How to pass data between sibling components using React router?
+-> Passing data between sibling components of React is possible using React Router useParams hook.
+
+Parent component (usually App.js to define routes)
+```javascript
+<Route path="/user/:id" element={<User />} />
+import { useParams } from "react-router-dom";
+
+const User = () => {
+  let { id } = useParams();
+
+  useEffect(() => {
+    console.log(`/user/${id}`);
+  }, []);
+
+  // .....
+};
+```
+### Q.How to set focus on an input field after component mounts on UI?
+->
+```javascript
+import React, { useEffect, useRef } from "react";
+
+const SearchPage = () => {
+  const textInput = useRef(null);
+
+  useEffect(() => {
+    textInput.current.focus();
+  }, []);
+
+  return (
+    <div>
+      <input ref={textInput} type="text" />
+    </div>
+  );
+};
+```
+
+### Q.Why virtual DOM is faster to update than real DOM?
+-> The virtual DOM is faster to update than the real DOM because React uses a clever technique to minimize the number of updates that need to be made to the real DOM.
+
+When you update the virtual DOM, React will compare the new virtual DOM with the old one, determine which parts have changed, and then update the real DOM accordingly. This means that only the parts of the DOM that actually need to be changed are updated, which is much faster than updating the entire DOM every time there is a change.
+
+Furthermore, the virtual DOM is implemented in JavaScript, which is generally faster to execute than the native code that is used to manipulate the real DOM.
+
+This means that React can perform updates to the virtual DOM quickly, and then use the resulting diff to make efficient updates to the real DOM.
+
+Overall, the use of the virtual DOM allows React to make efficient updates to the UI, which results in a faster and more responsive user experience.
+
+### Q.How to access the latest value of a text input field in a React component using the 'useRef' hook?
+-> You can access the latest value of a text input field in a React component using the useRef hook as follows:
+```javascript
+import React, { useRef } from "react";
+
+const InputComponent = () => {
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    console.log(inputRef.current.value);
+  };
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Show value </button>
+    </div>
+  );
+};
+```
+
+### Q.Create a React component that renders a nested list from a given array of objects. 
+Each object can have a name property and a nested children property, which is an array of objects with the same structure.
+The depth of nesting is unknown and can vary for different objects.
+
+Implement the React component to render the nested list based on the provided data.
+
+Example Data:
+
+const data = [
+  {
+    name: "Item 1",
+    children: [
+      {
+        name: "Subitem 1.1",
+        children: [
+          { name: "Subsubitem 1.1.1", children: [] },
+          { name: "Subsubitem 1.1.2", children: [] },
+        ],
+      },
+      { name: "Subitem 1.2", children: [] },
+    ],
+  },
+  {
+    name: "Item 2",
+    children: [
+      { name: "Subitem 2.1", children: [] },
+      { name: "Subitem 2.2", children: [] },
+    ],
+  },
+];
+Render the nested list using the provided data.
+
+->
+```javascript
+import React from "react";
+
+function NestedList({ data }) {
+  const renderNestedItems = (items) => {
+    return (
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item.name}
+            {item.children.length > 0 && renderNestedItems(item.children)}
+          </li>
+        ))}
+      </ul>
+    );
+  };
+
+  return (
+    <div>
+      <h2>Nested List</h2>
+      {renderNestedItems(data)}
+    </div>
+  );
+}
+
+export default NestedList;
+```
+The component NestedList recursively renders a nested list using the provided data prop. It checks if the current item has children and, if so, calls the renderNestedItems function recursively to render the nested list.
+
+### Q.What is the difference between useEffect and useLayoutEffect?
+-> Here is an example of how you might use useEffect and useLayoutEffect in a React component:
+```javascript
+import React, { useState, useEffect, useLayoutEffect } from "react";
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+
+  // useEffect runs after the render cycle has completed
+  useEffect(() => {
+    // This code will run every time the component renders,
+    // after the render is complete.
+    console.log("useEffect running");
+  });
+
+  // useLayoutEffect runs synchronously immediately after the render cycle
+  useLayoutEffect(() => {
+    // This code will run every time the component renders,
+    // before the browser has a chance to paint the update to the screen.
+    // Be careful! This can cause visual inconsistencies.
+    console.log("useLayoutEffect running");
+  });
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+In this example, when the Increment button is clicked, the useEffect hook will run after the component has been updated and re-rendered, whereas the useLayoutEffect hook will run before the update is painted to the screen. This means that if you were to use useLayoutEffect to update the UI, the user might see the UI update before the update is complete, which can cause visual inconsistencies. useEffect, on the other hand, runs after the update is complete and is therefore safer to use for updating the UI.
+
+
+### Q.Write a custom hook which can be used to debounce user's input.
+->
+```javascript
+const useDebounce = (value, delay) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [value]);
+
+  return debouncedValue;
+};
+
+//example
+const Counter = () => {
+  const [value, setValue] = useState(0);
+  const lastValue = useDebounce(value, 1000);
+
+  return (
+    <div>
+      <p>
+        Current Value: {value} | Debounced Value: {lastValue}
+      </p>
+      <button onClick={() => setValue(value + 1)}>Increment</button>
+    </div>
+  );
+};
+```
+
+### Q.Write a custom hook to copy text to clipboard.
+->
+```javascript
+// hook
+function useCopyToClipboard(content) {
+  const [isCopied, setIsCopied] = useState(false);
+
+  const copy = useCallback(() => {
+    navigator.clipboard
+      .writeText(content)
+      .then(() => setIsCopied(true))
+      .then(() => setTimeout(() => setIsCopied(false), 1250))
+      .catch((err) => alert(err));
+  }, [content]);
+  return [isCopied, copy];
+}
+
+// usage
+export default function App() {
+  const [isCopied, copy] = useCopyToClipboard("Text to copy!");
+  return <button onClick={copy}>{isCopied ? "Copied!" : "Copy"}</button>;
+}
+```
+
+### Q.How to Use the 'useId' Hook to generate unique ids.
+->
+useId does not take any parameters.
+useId returns a unique ID string associated with this particular useId call in this particular component.
+
+```javascript
+//usage
+import { useId } from "react";
+
+const App = () => {
+  const id = useId();
+
+  return (
+    <form>
+      <label htmlFor={`email-${id}`}>Email</label>
+      <input type="text" id={`email-${id}`} name="email" />
+
+      <label htmlFor={`password-${id}`}>Password</label>
+      <input type="password" id={`password-${id}`} name="password" />
+    </form>
+  );
+};
+
+// 🔴 Bad Practise - Don't use for key
+const id = useId();
+
+return posts.map((post) => <article key={id}>...</article>);
+```
+
+
+### Q. Why React's useDeferredValue hook is useful?
+-> 'useDeferredValue' is a React Hook that lets you defer updating a part of the UI.
+Basically it let you perform the debouncing technique with lesser code.
+
+```javascript
+//usage
+import { useState, useDeferredValue } from "react";
+//userList component takes searchText to fetch user's list
+import UserList from "./UserList.js";
+
+export default function App() {
+  const [searchText, setSearchText] = useState("");
+  //pass searchText as default visible value in useDeferredValue
+  const deferredQuery = useDeferredValue(searchText);
+
+  return (
+    <>
+      <label>
+        Search user:
+        <input
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+      </label>
+      <div>
+        <UserList searchText={deferredQuery} />
+      </div>
+    </>
+  );
+}
+```
+
+### Q.How to detect 'click' outside React component?
+->
+```javascript
+export default function OutsideAlerter() {
+  const clickMeDivRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!ref?.current?.contains(event.target)) {
+        alert("You clicked outside of me!");
+      }
+    };
+
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [clickMeDivRef]);
+
+  return <div ref={clickMeDivRef}>Clicked me?</div>;
+}
+```
+
+### Q.3 ways to solve functions, arrays, objects recreated on every render.
+
+1-put it outside if it not depend on any thing inside component
+
+2-put it inside effect
+
+3-useMemo or useCallback
+
+
+## Extra question to prepare- How can we fetch API data without using useEffect hook?
+- What are the security measures which should be considered during development?
+- Can we return setData inside a component?
+- Multiple useEffects in a same component?
+- Higher order components or custom hooks? Which approach will you follow.
+- Explain Middlewares in React which you have used?
+- Box model, CSS animation, SASS variables and mixins in CSS.
+- How authentication works with JWT?
+- What is selective hydration?
+- Crawlers, indexing a page and what are the ways?
+- Error pages creation
+- Memoization techniques, pure functions and pure components.
+- Write a pgrm for form validation without using any library
+- Performance optimization techniques explain
+- Various hooks syntax useParam, use Reducer, useQuery, useContext and many more.
+- Create a traingle using CSS
+- api fetch
+- infinite scroll
+- breadcrumbs
+- lazy loading component
+- pagination
+- multistep form
+- tabs in react
+- uploading
+- custom hook for api call
+- dark and light mode
+- local storage
+- modal 
+- stopwatch 
+- firm control
+- multiselect search
+- otp log in
+- shopping cart
+- image carousel 
+- sticky scroll
+- counter app using react redux
+- Implement Star Rating functionality
+- Design a Pop Over component
+- Create an Accordion Ul component
+- Design a Carousel for displaying images
+- Build a grid using HTML/CSS and JavaScript with search,
+- sort, and event bubbling (Amazon onsite)
+- Design a responsive NavBar
+- Implement Infinite Scroll feature
+- Develop Typeahead/Autocomplete functionality using a trie data structure
+- Implement a Debounce function
+- Build a Tic Tac Toe game
+- Create a Snake and Ladder board game
+- Make a Calendar of any month like a Date Picker
+- Implement a throttle function
+- Create custom Higher Order Functions like Map, Reduce, Filter, and Sort
+- Design an analog clock
+- Build a Todo List application
+- Implement functionality to change all text on a page to different translations
+- Develop a Giphy image search and display feature (using the Giphy API) in a responsive format
+- Build a Connect Four game
+- Implement Nested Checkboxes where parent and children
+- checkboxes are synchronized
+- Create a poll widget
+- Implement an Event Emitter
+- Implement the Promise.all function
+- Flatten a nested JavaScript array without using Array.prototype.flat()
+
+
 # Resources:
 
 react dom, reconciliation, rendering, etc
@@ -2505,16 +3287,6 @@ Use redux with api call using redux toolkit (redux,redux-thunk)-
 [https://drive.google.com/file/d/1nG7IaU6B1ce9ifmPRQYFv38Uih7oOU_Z/view?usp=drivesdk](https://drive.google.com/file/d/1nG7IaU6B1ce9ifmPRQYFv38Uih7oOU_Z/view?usp=drivesdk)
 
 
-
-
-### 3 ways to solve functions, arrays, objects recreated on every render.
-
-1-put it outside if it not depend on any thing inside component
-
-2-put it inside effect
-
-3-useMemo or useCallback
-
 Tips:
 
 Here's my 3 step breakdown on cracking Frontend Machine Coding rounds.
@@ -2523,16 +3295,12 @@ Here's my 3 step breakdown on cracking Frontend Machine Coding rounds.
 
 (For longer Interview hours - Logical feature of Apps)
 
-
-
 * WhatsApp Web Ul
 * Instagram Comments Section
 * Design Movies Page
 * Design Carrom Board
 
 (For shorter Interview hours - Small Ul components)
-
-
 
 * •Dropdown
 * Autocomplete
@@ -2542,8 +3310,6 @@ Here's my 3 step breakdown on cracking Frontend Machine Coding rounds.
 Practice
 
 (99% of the times you'll only need these coding utilities)
-
-
 
 * useState
 * useEffect
@@ -2558,14 +3324,12 @@ Mistakes
 
 (Don't waste your time on these)
 
-
 * Writing Clean code
-*  File structure
+* File structure
 * Beautifying Ul
 * Breaking Ul to 20, 30 useless components
-
+* 
 Focus on logical implementation with a working model first. This is what Interviewers care about.
-
 
 # Git:
 

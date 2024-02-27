@@ -1,11 +1,12 @@
 - [Javascript questions and answers](#javascript-questions-and-answers)
     - [Q.What is webpack?](#qwhat-is-webpack)
+    - [Q. Tree shaking?](#q-tree-shaking)
     - [Q. What is Babel?](#q-what-is-babel)
     - [Q. Scope?](#q-scope)
     - [Q. Scope chaining or lexical scoping?](#q-scope-chaining-or-lexical-scoping)
     - [Q. Difference between Var, Let and Const?](#q-difference-between-var-let-and-const)
     - [Q. undefined vs null](#q-undefined-vs-null)
-    - [Q.Template literals  ${} and  \`\`](#qtemplate-literals--s-amd--)
+    - [Q.Template literals  ${} and  \`\`](#qtemplate-literals---and--)
     - [Q. Object.is()](#q-objectis)
     - [Q. == vs ===](#q--vs-)
     - [Q. Optional chaining?](#q-optional-chaining)
@@ -46,6 +47,7 @@
     - [Q. OOP(classes, object, prototype, constructor, inheritance,polymorphism, encapsulation,abstraction)](#q-oopclasses-object-prototype-constructor-inheritancepolymorphism-encapsulationabstraction)
     - [Q. Object?](#q-object)
     - [Q. This?](#q-this)
+    - [Proxy](#proxy)
     - [Q. Constructor function?](#q-constructor-function)
     - [Q. Commonly used methods from the Object class](#q-commonly-used-methods-from-the-object-class)
     - [Q. getter and setter?](#q-getter-and-setter)
@@ -61,6 +63,7 @@
     - [Q. Generator Function?](#q-generator-function)
     - [Q. Async and defer?](#q-async-and-defer)
     - [Q. String methods](#q-string-methods)
+    - [Boxing and unboxing](#boxing-and-unboxing)
     - [Q.  for(let i=0; i\<=3; i++){}, explain to me which block does let i belong?](#q--forlet-i0-i3-i-explain-to-me-which-block-does-let-i-belong)
     - [Q. If i use var instead of let what would be its scope?](#q-if-i-use-var-instead-of-let-what-would-be-its-scope)
     - [Q. Hoisting?](#q-hoisting)
@@ -68,6 +71,7 @@
     - [Q. Api call using fetch](#q-api-call-using-fetch)
 - [Regular Expressions](#regular-expressions)
 - [Resources](#resources)
+- [problem solving:](#problem-solving)
 - [Bonus](#bonus)
 - [React important Topics](#react-important-topics)
 - [Blind 75 DSA sheet](#blind-75-dsa-sheet)
@@ -3062,7 +3066,7 @@ Some interview questions -
 
 [https://drive.google.com/file/d/1nG7IaU6B1ce9ifmPRQYFv38Uih7oOU_Z/view?usp=drivesdk](https://drive.google.com/file/d/1nG7IaU6B1ce9ifmPRQYFv38Uih7oOU_Z/view?usp=drivesdk)
 
-problem solving:
+# problem solving:
 
 1. Reverse Words in a Sentence
 2. Find the Nth Largest Element in an Array
@@ -3148,6 +3152,34 @@ use currying.
 65. Generate Date & Time.
 66. Copy text to clipboard
 67. Generate a random number b/w two values.
+- Explain service and web workers.
+- Why do we need currying in JS? Explain with example.
+- Explain Array prototyping, generators.
+- Interceptors in axios library?
+- Different types of object creation.
+- What is obj literal and JSON obj.
+- First class functions.
+- Event Loop - Task/Micro Task Queues.
+- Second Largest numb from array without using Math, sort functions.
+- Synthetic events
+- Cookies, localStorage and sessionStorage
+- How Babel works?
+- Explain webpack, parcel and some of its features.
+- HTTP methods...explain
+- Call, apply and bind
+- Arrow functions, anonymous functions, this keyword
+- Explain rate limiting and write a small code to demonstrate.
+- ESLint and security plugins used in your proj?
+- CORS, CSP and XSS explain
+- Tree shaking, debouncing and throttling
+- Array operations
+- Nested array operations, flattening of an array likewise
+- Shallow and deep copy..explain how will you create it
+- Implement a custom Sort() function
+- How do you fetch multiple APIs in a single time.
+- How will you select between SSR and CSR for you application? What parameters will you consider.
+- What is A11y issues? How do you handle it?
+
 
 # Bonus
 
