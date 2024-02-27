@@ -707,8 +707,8 @@ try {
 -> Normal function creation is function statement,
 
 ```javascript
-function a(){ \
-console.log('hello world'); \
+function a(){ 
+console.log('hello world'); 
 }
 ```
 
@@ -775,6 +775,37 @@ A function parameter is a value received by a function.
 ### Q. Higher order functions
 
 -> A function that takes a function as an argument or returns a function from it is known as higher order functions.
+
+### Q.Arguments array?
+-> Arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
+
+```javascript
+function func1(a, b, c) {
+console.log(arguments[0]);
+// Expected output: 1
+
+console.log(arguments[1]);
+// Expected output: 2
+
+console.log(arguments[2]);
+// Expected output: 3
+}
+
+func1(1, 2, 3);
+```
+
+Note: In modern code, rest parameters should be preferred.
+
+The arguments object is a local variable available within all non-arrow functions. You can refer to a function's arguments inside that function by using its arguments object. It has entries for each argument the function was called with, with the first entry's index at 0.
+
+For example, if a function is passed 3 arguments, you can access them as follows:
+```javascript
+arguments[0]; // first argument
+arguments[1]; // second argument
+arguments[2]; // third argument
+```
+
+The arguments object is useful for functions called with more arguments than they are formally declared to accept, called variadic functions, such as Math.min().
 
 ### Q. Arrow functions and its advantages?
 
@@ -1040,7 +1071,7 @@ Advancely, when a promise is awaited to be settled, that whole async function is
 
 We use async/await when you have some asynchronous operation to do. let say a fetch request from a server, which is an asynchronous task, i.e result will be delivered in future. so when we have to wait for the fetch data we use async/await.
 
-While the async function is suspended, the function's state is saved, and the event loop is free to continue processing other tasks or events. The suspended function's context, including local variables and the current execution position, is stored in a data structure called a "Promise Jobs" queue or microtask queue.
+While the async function is suspended, the function's state is saved, and the event loop is free to continue processing other tasks or events in the call stack. The suspended function's context, including local variables and the current execution position, is stored to be later placed in microtask queue after asynchronous operation is resolved.
 
 When the awaited promise is settled (resolved or rejected), the corresponding microtask is placed in the microtask queue. The event loop then picks up this microtask and resumes the execution of the suspended async function, restoring its context from where it left off.
 
@@ -1089,6 +1120,23 @@ In the above code 1 and 2 are console logged and asyncFunc() is called and contr
 The awaited promise and  waits it to be settled, that whole async function is suspended and the state of execution is saved by the javascript runtime environment, and after the awaited promise is settled it is put in the call stack again and starts executing from where it left.
 
 And in that time 3 and 4 are logged.
+
+If an async function is called in another function, only the async function will be suspended, the parent function will not wait for for the async function to complete its execution.
+```javascript
+function parentFunction() {
+console.log("Before asyncFunction call");
+asyncFunction(); //after this function is called, runtime will proceed to next line to execute.
+console.log("After asyncFunction call");
+}
+
+async function asyncFunction() {
+console.log("Before await");
+await new Promise(resolve => setTimeout(resolve, 1000));
+console.log("After await");
+}
+
+parentFunction();
+```
 
  async/await is a syntactical feature introduced in JavaScript that provides a more concise and sequential way to write asynchronous code. It is built on top of Promises and offers a more readable and synchronous-like style of coding for handling asynchronous operations.
 
@@ -1168,6 +1216,35 @@ showServiceCost();
 ```
 
 Using await pauses the execution of its surrounding async function until the promise is settled (that is, fulfilled or rejected). When execution resumes, the value of the await expression becomes that of the fulfilled promise.
+
+### Q. Top level await?
+->Top-level await enables developers to use the await keyword outside of async functions. It acts like a big async function causing other modules who import them to wait before they start evaluating their body.
+
+The old behavior
+
+When async/await was first introduced, attempting to use an await outside of an async function resulted in a SyntaxError. Many developers utilized immediately-invoked async function expressions as a way to get access to the feature.
+```javascript
+await Promise.resolve(console.log('🎉'));
+
+// → SyntaxError: await is only valid in async function
+
+(async function() {
+
+  await Promise.resolve(console.log('🎉'));
+
+  // → 🎉
+
+}());
+```
+The new behavior
+
+With top-level await, the above code instead works the way you’d expect within modules:
+```javascript
+await Promise.resolve(console.log('🎉'));
+
+// → 🎉
+```
+Note: Top-level await only works at the top level of modules. There is no support for classic scripts or non-async functions.
 
 ### Q. Map data structure?
 
