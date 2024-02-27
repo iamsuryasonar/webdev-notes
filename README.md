@@ -2517,9 +2517,9 @@ document.getElementById('outer').addEventListener('click', function() {
 </html>
 ```
 
-### Q. Denouncing and throttling?
+### Q. Debouncing and throttling?
 
--> use denouncing when it should be implemented in the event pause. eg. req on 2 sec pause.
+-> use debouncing when it should be implemented in the event pause. eg. req on 2 sec pause.
 
 -implementation of search bar suggestion on api call, ie. while typing, on user pause call api, is an example of denouncing.
 
@@ -2718,23 +2718,6 @@ Boxing is the process in which a primitive value is wrapped in an Object. When a
 
 [boxing unboxing in js](https://www.codingninjas.com/studio/library/javascript-boxing-and-unboxing)
 
-
-
-
-
-**JavaScript Problems**
-
-- Reverse a String
-- flatten an array
-- Factorialize a Number
-- Find the Longest Word in a String
-- Return Largest Numbers in Arrays
-- Check if an string is present at the end of another string
-  - Could be solved using str.endsWith() function
-  - Also with **return** (str.slice(str.length - target.length) === target) ? true : false;
-  - Also **return** (str.slice(-target.length) === target)? true : false;
-- Repeat a string  
-  - str.repeat(num) method could be used
 
 ### Q.  for(let i=0; i&lt;=3; i++){}, explain to me which block does let i belong?
 
@@ -3254,7 +3237,7 @@ Some interview questions -
   - width: a number representing the width of the rectangle.
   - height: a number representing the height of the rectangle.
   - Implement the area() method to calculate and return the area of the rectangle.
-
+  
 4. Finding the Longest Substring Without Repeating Characters
 5. Sum of Two Numbers in an Array
 6. Write a JavaScript function to check if a given string is a palindrome (reads the same forwards and backwards).
@@ -3354,6 +3337,17 @@ use currying.
 - How do you fetch multiple APIs in a single time.
 - How will you select between SSR and CSR for you application? What parameters will you consider.
 - What is A11y issues? How do you handle it?
+- Reverse a String
+- flatten an array
+- Factorialize a Number
+- Find the Longest Word in a String
+- Return Largest Numbers in Arrays
+- Check if an string is present at the end of another string
+  - Could be solved using str.endsWith() function
+  - Also with **return** (str.slice(str.length - target.length) === target) ? true : false;
+  - Also **return** (str.slice(-target.length) === target)? true : false;
+- Repeat a string  
+  - str.repeat(num) method could be used
 
 
 # Bonus
