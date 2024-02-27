@@ -626,7 +626,8 @@ ReactDOM.render(element, document.getElementById('root'));
     Stateless component is a component that can receive data and render it, but does not manage or track changes to that data.
 
 ### Q.What are controlled components?
-In HTML, form elements such as <input>, <textarea>, and <select> typically maintain their own state and update it based on user input. When a user submits a form the values from the mentioned elements are sent with the form. With React it works differently. The component containing the form will keep track of the value of the input in it's state and will re-render the component each time the callback function e.g. onChange is fired as the state will be updated. An input form element whose value is controlled by React in this way is called a controlled component.
+In HTML, form elements such as 
+```<input>```, ```<textarea>```, and ```<select>``` typically maintain their own state and update it based on user input. When a user submits a form the values from the mentioned elements are sent with the form. With React it works differently. The component containing the form will keep track of the value of the input in it's state and will re-render the component each time the callback function e.g. onChange is fired as the state will be updated. An input form element whose value is controlled by React in this way is called a controlled component.
 
 ### Q.What is equivalent of the following using React.createElement?
 ```javascript
