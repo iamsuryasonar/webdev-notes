@@ -31,6 +31,7 @@
     - [Q.Anonymous function?](#qanonymous-function)
     - [Q. Function arguments and function parameters](#q-function-arguments-and-function-parameters)
     - [Q. Higher order functions](#q-higher-order-functions)
+    - [Q.Arguments array?](#qarguments-array)
     - [Q. Arrow functions and its advantages?](#q-arrow-functions-and-its-advantages)
     - [Q.Why is it said that the arrow function does not have its own this context?](#qwhy-is-it-said-that-the-arrow-function-does-not-have-its-own-this-context)
     - [Q. Difference between this context of arrow function and regular function?](#q-difference-between-this-context-of-arrow-function-and-regular-function)
@@ -39,15 +40,17 @@
     - [Q. Implement promise.all?](#q-implement-promiseall)
     - [Q. How is an asynchronous operation handled?](#q-how-is-an-asynchronous-operation-handled)
     - [Q. Async/await?](#q-asyncawait)
+    - [Q. Top level await?](#q-top-level-await)
     - [Q. Map data structure?](#q-map-data-structure)
     - [Q. Set data structure?](#q-set-data-structure)
     - [Q. map,filter and reduce?](#q-mapfilter-and-reduce)
     - [Q. Difference between map and forEach?](#q-difference-between-map-and-foreach)
     - [Q. Modules?](#q-modules)
+    - [Q. .js, .cjs, .mjs what is the difference?](#q-js-cjs-mjs-what-is-the-difference)
     - [Q. OOP(classes, object, prototype, constructor, inheritance,polymorphism, encapsulation,abstraction)](#q-oopclasses-object-prototype-constructor-inheritancepolymorphism-encapsulationabstraction)
     - [Q. Object?](#q-object)
     - [Q. This?](#q-this)
-    - [Proxy](#proxy)
+    - [Q. Proxy](#q-proxy)
     - [Q. Constructor function?](#q-constructor-function)
     - [Q. Commonly used methods from the Object class](#q-commonly-used-methods-from-the-object-class)
     - [Q. getter and setter?](#q-getter-and-setter)
@@ -58,7 +61,7 @@
     - [Q . Events in javascript?](#q--events-in-javascript)
     - [Q. Event handling?](#q-event-handling)
     - [Q. Event propagation - bubbling and capturing?](#q-event-propagation---bubbling-and-capturing)
-    - [Q. Denouncing and throttling?](#q-denouncing-and-throttling)
+    - [Q. Debouncing and throttling?](#q-debouncing-and-throttling)
     - [Q. Implement debouncing?](#q-implement-debouncing)
     - [Q. Generator Function?](#q-generator-function)
     - [Q. Async and defer?](#q-async-and-defer)
@@ -75,6 +78,7 @@
 - [Bonus](#bonus)
 - [React important Topics](#react-important-topics)
 - [Blind 75 DSA sheet](#blind-75-dsa-sheet)
+
 
 **Java Script - mainly focused topics:**
 
