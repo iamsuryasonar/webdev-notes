@@ -1246,6 +1246,45 @@ await Promise.resolve(console.log('🎉'));
 ```
 Note: Top-level await only works at the top level of modules. There is no support for classic scripts or non-async functions.
 
+For example:
+```javascript
+//user.mjs
+const url = 'https://jsonplaceholder.typicode.com/users';
+const response = await fetch(url);
+let users = await response.json();
+
+export { users };
+```
+In this module, you can use the await keyword without placing a statement inside an async function.
+Import the users from the user.mjs module and use it:
+```javascript
+//app.js
+import { users } from './user.mjs';
+
+function render(users) {
+  if (!users) {
+    throw 'The user list is not available.';
+  }
+  let list = users
+    .map((user) => {
+      return `<li> ${user.name}(<a href="email:${user.email}">${user.email}</a>)</li>`;
+    })
+    .join(' ');
+
+  return `<ol>${list}</ol>`;
+}
+
+let container = document.querySelector('.container');
+
+try {
+  container.innerHTML = render(users);
+} catch (error) {
+  container.innerHTML = error;
+}
+```
+In this case, the app.mjs module will wait for the user.mjs module to complete before executing its body.
+
+
 ### Q. Map data structure?
 
 -> Before ES6, we often used an object to emulate a map by mapping a key to a value of any type. But using an object as a map has some side effects:
@@ -1627,6 +1666,65 @@ import myName from './module.js';
 console.log(myName); // Output: John
 ```
 
+### Q. .js, .cjs, .mjs what is the difference?
+-> CJS, MJS, and .JS are file extensions used to denote different types of JavaScript files. Here's the difference between them:
+
+.JS (JavaScript):
+The .js extension is the most common file extension for JavaScript files. It is used to indicate that a file contains JavaScript code. .js files can be executed in different JavaScript environments, such as web browsers, servers, and other JavaScript runtime environments.
+
+CJS (CommonJS):
+CommonJS is a module system for JavaScript used in server-side environments like Node.js. The CJS module format allows you to define modules using the require and module.exports syntax. In CommonJS, each file is treated as a separate module, and you can import/export functionality between modules using require and module.exports.
+
+CommonJS modules are typically used in Node.js applications and other server-side JavaScript environments. You will often find files with the .js extension using the CommonJS module format.
+
+MJS (ECMAScript Modules): MJS is an extension used for JavaScript files that adhere to the ECMAScript Modules (ESM) specification. ECMAScript modules are part of the JavaScript language standard and provide a more modern and standardized way to define modules.
+ECMAScript modules use the import and export keywords to define dependencies and expose functionality between modules. Unlike CommonJS, which is primarily used in server-side environments, ECMAScript modules can be used both in browsers and server-side environments that support them.
+
+The MJS extension is often used to indicate that a JavaScript file uses the ECMAScript module format, making it easier to differentiate between files that use CommonJS and ECMAScript modules.
+
+In summary, .js files are the general extension for JavaScript files, while CJS and MJS are extensions used to specify the module formats (CommonJS and ECMAScript Modules) used in JavaScript files for different environments and purposes.
+Here are some examples to illustrate the usage of each file extension:
+
+.JS (JavaScript):
+```javascript
+// script.js
+function sayHello() {
+  console.log("Hello, world!");
+}
+
+sayHello();
+```
+
+CJS (CommonJS):
+```javascript
+// moduleA.js
+const message = "Hello, from Module A!";
+module.exports = message;
+
+// moduleB.js
+const messageA = require("./moduleA");
+console.log(messageA);
+```
+
+MJS (ECMAScript Modules):
+```javascript
+// moduleA.mjs
+const message = "Hello, from Module A!";
+export default message;
+```
+
+```javascript
+// moduleB.mjs
+import messageA from "./moduleA";
+console.log(messageA);
+```
+
+In the first example, the .js file contains regular JavaScript code that can be executed in any JavaScript environment.
+
+The second example demonstrates the use of CommonJS modules. Each file is treated as a separate module, and the module.exports statement is used to expose functionality from one module to another. The require statement is used to import the exported functionality.
+
+The third example showcases ECMAScript modules. The MJS extension is used to indicate that the JavaScript file adheres to the ECMAScript module format. The export statement is used to expose functionality, and the import statement is used to import the exported functionality from other modules.
+
 ### Q. OOP(classes, object, prototype, constructor, inheritance,polymorphism, encapsulation,abstraction)
 
 ->
@@ -1713,7 +1811,7 @@ Arrow functions do not have their own this context but inherit this from the enc
 
 When used as an event handler, this typically refers to the element that received the event.
 
-### Proxy
+### Q. Proxy
 -> The Proxy object enables you to create a proxy for another object, which can intercept and redefine fundamental operations for that object.
 
 [MDN definition](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy)
