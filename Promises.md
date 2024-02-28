@@ -68,9 +68,9 @@ const promise = new Promise((resolveFunc, rejectFunc) => {
 
 To create a promise, we need to create an instance object using the Promise constructor function. The Promise constructor function takes in one parameter. That parameter is a function called as the executor function. A function to be executed by the constructor. It receives two functions as parameters: resolveFunc and rejectFunc. Any errors thrown in the executor will cause the promise to be rejected, and the return value will be neglected. 
 
-> **_NOTE:_** resolveFunc and rejectFunc are same as resolve and reject, you can use whatever you want but resolve and reject are convention that is commonly used.
+> **_NOTE:_**  resolveFunc and rejectFunc are same as resolve and reject, you can use whatever function name you want but resolve and reject are convention that is commonly used.
 
-So, you might want to perform a task after the promise is resolved and rejected.
+So, you might want to perform a task after the promise is resolved or rejected.
 Thats when we use .then(), .catch() and .finally() methods.
 
 ## .then()
