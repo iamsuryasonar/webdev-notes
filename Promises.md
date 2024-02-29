@@ -9,6 +9,10 @@
     - [Promise.allSettled()](#promiseallsettled)
     - [Promise.race()](#promiserace)
     - [Promise.any()](#promiseany)
+  - [Syntax/Implementation](#syntaximplementation)
+    - [Promise syntax](#promise-syntax)
+    - [Promise.all](#promiseall-1)
+    - [Polyfill of Promise.all()](#polyfill-of-promiseall)
 
 
 # Promises
@@ -264,3 +268,234 @@ Takes an iterable of promises as input and returns a single Promise. This return
 
 The AggregateError object represents an error when several errors need to be wrapped in a single error. It is thrown when multiple errors need to be reported by an operation.
 AggregateError object contains an array of rejection reasons in its errors property.
+
+
+
+## Syntax/Implementation
+
+### Promise syntax
+```javascript
+const promise = new Promise((resolve, reject) => {
+
+    // setTimeout(() => {
+    //     resolve('promise resolved'); 
+    // }, 1000)
+
+    reject(new Error('promise rejected'));
+
+})
+
+promise.then(
+    (result) => {
+        console.log(result);
+    },
+    // (err) => {
+    //     console.log('error ', err); // second parameter of then
+    // }
+).catch((err) => {
+    console.log('error catched', err)
+}).finally(() => {
+    console.log('finally')
+})
+```
+
+
+### Promise.all
+
+```javascript
+const promise1 = new Promise((resolve, reject) => {
+    resolve('resolved1');
+    reject('reject1')
+})
+
+const promise2 = new Promise((resolve, reject) => {
+    // resolve('resolved2');
+    reject('reject2')
+})
+
+const promise3 = new Promise((resolve, reject) => {
+    resolve('resolved3');
+    reject('reject3')
+})
+
+const promise4 = new Promise((resolve, reject) => {
+    resolve('resolved4');
+    reject('reject4')
+})
+
+const promise_all = Promise.all([promise1, promise2, promise3, promise4]).then((results) => {
+
+    results.forEach((result) => {
+        console.log(result)
+    })
+
+},
+    //     (error) => {
+    //     console.log(error);// second parameter of then
+    // },
+).catch((error) => {
+    console.log(error)
+})
+```
+
+
+### Polyfill of Promise.all()
+
+   - let's learn step by step... 
+
+```javascript
+const dummyPromise = (timeout) => { // to simulate an asynchronous operation
+    return new Promise((resolve, reject) => {
+        if (timeout === 0) {
+            reject('rejected ' + timeout);
+        }
+        setTimeout(() => {
+            resolve(timeout);
+        }, timeout);
+    })
+}
+
+
+Promise.all([dummyPromise(1000), dummyPromise(0), dummyPromise(3000)]).then((data) => {
+    console.log(data);
+}).catch((err) => {
+    console.log(err)
+})
+```
+
+    - Promise.all() basically takes an array of promises and returns a new promise with fullfilled values (array) or rejected reason.
+
+```javascript
+const CustomPromise = (arrayOfPromise) => {
+    return new Promise((resolve, reject) => {
+
+    })
+}
+```
+    - loop over the given array of promises.
+
+```javascript
+const CustomPromise = (arrayOfPromise) => {
+    return new Promise((resolve, reject) => {
+            arrayOfPromise.forEach((promise,index)=>{
+                promise.then((result)=>{
+                        
+                })
+            })
+    })
+}
+
+```
+
+    - Promise.all returns an array of results if all promises are fullfilled else returns the first encountered rejection
+
+```javascript
+const arrayOfPromise = [dummyPromise(1000), dummyPromise(0), dummyPromise(3000)];
+
+const customPromise = (arrayOfPromise) => {
+    let resultsArray = []; //to store the resolved promises
+    return new Promise((resolve, reject) => {
+        arrayOfPromise.forEach((promise, index) => {
+            promise.then((result) => {
+                resultsArray[index] = result;
+                if (arrayOfPromise.length - 1 === index) { // checks if all promises are settled
+                    resolve(resultsArray);
+                }
+            }).catch((error) => {
+                reject(error)
+            })
+        })
+    })
+}
+
+```
+
+
+    - Some edge case - if given array contains zero element, if elements are non-Promise values.
+
+```javascript
+// empty array
+const arrayOfPromise = []; 
+
+// non-Promise values
+// const arrayOfPromise = [1, 2, 34]
+
+const customPromise = (arrayOfPromise) => {
+    let resultsArray = [];
+    return new Promise((resolve, reject) => {
+        if (arrayOfPromise.length === 0) resolve(arrayOfPromise);// if array contains no element
+
+        arrayOfPromise.forEach((promise, index) => {
+             if (!(promise instanceof Promise)) {// if element is not an instance of Promise
+                resultsArray[index] = promise;
+
+                if (arrayOfPromise.length - 1 === index) {
+                    resolve(resultsArray);
+                }
+            } else {
+                promise.then((result) => {
+                    resultsArray[index] = result;
+                    if (arrayOfPromise.length - 1 === index) { // checks if all promises are settled
+                        resolve(resultsArray);
+                    }
+                }).catch((error) => {
+                    reject(error)
+                })
+            }
+        })
+    })
+}
+```
+
+
+    - let's check our implementation
+  
+```javascript
+
+// check for resolved results
+
+const arrayOfPromise = [dummyPromise(1000), dummyPromise(4000), dummyPromise(1000)];
+
+//check for rejection
+
+// const arrayOfPromise = [dummyPromise(1000), dummyPromise(4000), dummyPromise(0)];
+
+// check for non-Promise values
+
+// const arrayOfPromise = [1, 2, 34]
+
+const customPromise = (arrayOfPromise) => {
+    let resultsArray = [];
+    return new Promise((resolve, reject) => {
+        if (arrayOfPromise.length === 0) resolve(arrayOfPromise);
+
+        return arrayOfPromise.forEach(async (promise, index) => {
+
+            if (!(promise instanceof Promise)) {
+                resultsArray[index] = promise;
+
+                if (arrayOfPromise.length - 1 === index) {
+                    resolve(resultsArray);
+                }
+            } else {
+                promise.then((result) => {
+                    resultsArray[index] = result;
+
+                    if (arrayOfPromise.length - 1 === index) {
+                        resolve(resultsArray);
+                    }
+                }).catch((error) => {
+                    reject(error)
+                })
+            }
+        })
+    })
+}
+
+
+customPromise(arrayOfPromise).then((data) => {
+    console.log(data)
+}).catch((err) => {
+    console.log(err)
+})
+```
