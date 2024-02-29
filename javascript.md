@@ -1069,7 +1069,7 @@ This simplified implementation demonstrates the basic mechanics of Promise.all b
 
 Advancely, when a promise is awaited to be settled, that whole async function is suspended and the state of execution is saved by the javascript runtime environment, and after the awaited promise is settled it is put in the call stack again and starts executing from where it left.
 
-We use async/await when you have some asynchronous operation to do. let say a fetch request from a server, which is an asynchronous task, i.e result will be delivered in future. so when we have to wait for the fetch data we use async/await.
+We use async/await when we have some asynchronous operation to do. let say a fetch request from a server, which is an asynchronous task, i.e result will be delivered in future. so when we have to wait for the fetch data we use async/await.
 
 While the async function is suspended, the function's state is saved, and the event loop is free to continue processing other tasks or events in the call stack. The suspended function's context, including local variables and the current execution position, is stored to be later placed in microtask queue after asynchronous operation is resolved.
 
@@ -1115,13 +1115,11 @@ Some fetched data
 
 You see that as we called asyncFunc, our code continued running until it was time for the function to return results.
 
-In the above code 1 and 2 are console logged and asyncFunc() is called and control is moved inside asyncFunc then it logs ‘hello’ and in the next line await to a promise is encountered, which is an asynchronous operation therefore, the environment takes
-
-The awaited promise and  waits it to be settled, that whole async function is suspended and the state of execution is saved by the javascript runtime environment, and after the awaited promise is settled it is put in the call stack again and starts executing from where it left.
+In the above code 1 and 2 are console logged and asyncFunc() is called and control is moved inside asyncFunc then it logs ‘hello’ and in the next line await to a promise is encountered, which is an asynchronous operation therefore, the environment takes the awaited promise and  waits it to be settled, that whole async function is suspended and the state of execution is saved by the javascript runtime environment, and after the awaited promise is settled it is put in the call stack again and starts executing from where it left.
 
 And in that time 3 and 4 are logged.
 
-If an async function is called in another function, only the async function will be suspended, the parent function will not wait for for the async function to complete its execution.
+If an async function is called in another function, only the async function will be suspended, the parent function will not wait for the async function to complete its execution.
 ```javascript
 function parentFunction() {
 console.log("Before asyncFunction call");
