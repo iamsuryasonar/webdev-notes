@@ -2237,7 +2237,7 @@ const person = {
    lastName:'Doe'
 }
 function fullName(age){
-   console.log('My name is '+this.firstName+' '+this.lastName+' '+I am
+   console.log('My name is '+this.firstName+' '+this.lastName+' '+'I am
 '+age+' years old')
 }
 
@@ -2248,7 +2248,7 @@ fullName.call(person,'22')
 
 // apply method also works same as call method but we pass function //arguments in an array
 
-fullName.apply(person,[22]
+fullName.apply(person,[22])
 
 // bind method is exactly same as call but instead of directly invoking // the function it returns the function which could be called later
 
@@ -2298,7 +2298,7 @@ const person = {
    lastName:'Doe'
 }
 function fullName(age){
-   console.log('My name is '+this.firstName+' '+this.lastName+' '+I am
+   console.log('My name is '+this.firstName+' '+this.lastName+' '+'I am
 '+age+' years old')
 }
 
@@ -2361,13 +2361,13 @@ Function.prototype.mybind = function(...args){
 }
 ```
 
-<span style="text-decoration:underline;">Again:</span> What if the this function itself required an argument?
+<span style="text-decoration:underline;">Again:</span> What if the function itself required an argument?
 
 ```javascript
 const fullNameFunction= fullName.bind(person,'22');
 ```
 
-In this case the fullName function.
+In this case the fullNameFunction.
 
 ```javascript
 Function.prototype.mybind = function(...args){
