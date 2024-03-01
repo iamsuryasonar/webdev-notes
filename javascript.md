@@ -41,6 +41,9 @@
     - [Q. How is an asynchronous operation handled?](#q-how-is-an-asynchronous-operation-handled)
     - [Q. Async/await?](#q-asyncawait)
     - [Q. Top level await?](#q-top-level-await)
+    - [Q. Map and set data structure](#q-map-and-set-data-structure)
+      - [Map](#map)
+      - [Set](#set)
     - [Q. Map data structure?](#q-map-data-structure)
     - [Q. Set data structure?](#q-set-data-structure)
     - [Q. map,filter and reduce?](#q-mapfilter-and-reduce)
@@ -1282,22 +1285,80 @@ try {
 ```
 In this case, the app.mjs module will wait for the user.mjs module to complete before executing its body.
 
+### Q. Map and set data structure
+->
+#### Map
+
+The Map object holds key - value pairs and remembers the original insertion order of the keys.Any value(both objects and primitive values) may be used as either a key or a value.
+
+```javascript
+const userProfile = new Map();
+
+userProfile.set('name', 'John').set('email', 'john@example.com');
+console.log(userProfile.get('name'));
+console.log(userProfile.has('name'))
+console.log(userProfile.size)
+userProfile.delete('name');
+console.log(userProfile)
+
+for (const item of userProfile) {
+    console.log('item', item[0]) // gets the key
+    console.log('item', item[1]) // gets the value
+}
+
+```
+
+Another way of populating a map-
+
+```javascript
+const user = new Map([['name', 'John'], ['age', 12]])
+console.log(user)
+```
+
+
+#### Set
+
+The Set object lets you store unique values of any type, whether primitive values or object references.
+
+Set objects are collections of values. A value in the set may only occur once; it is unique in the set's collection. You can iterate through the elements of a set in insertion order. The insertion order corresponds to the order in which each element was inserted into the set by the add() method successfully (that is, there wasn't an identical element already in the set when add() was called).
+```javascript
+const session = new Set();
+
+session.add('Rahul');
+session.add('John');
+session.add('Doe');
+
+console.log(session.has('Rahul'))
+console.log(session.delete('Rahul'))
+console.log(session.entries())
+
+session.forEach((item) => {
+    return 'Name ' + item
+})
+
+for (const item of session) {
+    console.log(item)
+}
+
+console.log(session)
+console.log(session.clear())
+
+const mySet2 = new Set([1, 2, 3, 4, 4]);
+console.log(mySet2.size); // 4
+console.log([...mySet2]); // [1, 2, 3, 4]
+```
 
 ### Q. Map data structure?
 
 -> Before ES6, we often used an object to emulate a map by mapping a key to a value of any type. But using an object as a map has some side effects:
-
 An object always has a default key like the prototype.
-
 A key of an object must be a string or a symbol, you cannot use an object as a key.
-
 An object does not have a property that represents the size of the map.
-
 ES6 provides a new collection type called Map that addresses these deficiencies.
 
-By definition, a Map object holds key-value pairs. Keys are unique in a Map’s collection. In other words, a key in a Map object only appears once.
+By definition, a Map object holds key-value pairs and remembers the original insertion order of the keys. Keys are unique in a Map’s collection. 
 
-<span style="text-decoration:underline;">Create map - </span>
+Create map -
 
 ```javascript
 let userRoles = new Map();
@@ -1313,7 +1374,7 @@ let userRoles = new Map([
 ]);
 ```
 
-<span style="text-decoration:underline;">Set single key pair or multiple by chaining set method.</span>
+Set single key pair or multiple by chaining set method.
 
 ```javascript
 userRoles.set(john, 'admin');
@@ -1326,20 +1387,20 @@ userRoles.set(lily, 'editor')
           .set(peter, 'subscriber');
 ```
 
-<span style="text-decoration:underline;">Get an element from a map by key:</span>
+Get an element from a map by key:
 
 ```javascript
 userRoles.get(john); // admin
 ```
 
-<span style="text-decoration:underline;">If you pass a key that does not exist, the get() method will return undefined.</span>
+If you pass a key that does not exist, the get() method will return undefined.
 
 ```javascript
 let foo = {name: 'Foo'};
 userRoles.get(foo); //undefined
 ```
 
-<span style="text-decoration:underline;">Check the existence of an element by key</span>
+Check the existence of an element by key
 
 To check if a key exists in the map, you use the has() method.
 
@@ -1347,8 +1408,7 @@ To check if a key exists in the map, you use the has() method.
 userRoles.has(foo); // false
 userRoles.has(lily); // true
 ```
-
-<span style="text-decoration:underline;">Get the number of elements in the map</span>
+Get the number of elements in the map
 
 The size property returns the number of entries of the Map object.
 
@@ -1356,7 +1416,7 @@ The size property returns the number of entries of the Map object.
 console.log(userRoles.size); // 3
 ```
 
-<span style="text-decoration:underline;">Iterate over map keys</span>
+Iterate over map keys
 
 To get the keys of a Map object, you use the keys() method. The keys() returns a new iterator object that contains the keys of elements in the map.
 
