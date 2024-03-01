@@ -2351,10 +2351,9 @@ Function.prototype.mybind = function(...args){
 
 ```javascript
 Function.prototype.mybind = function(...args){
-// we can get the context using this
    let fn= this;
    let params = args.slice(1); 
-   // since params is now an array we cannot pass that to the call        method instead we will use apply method because it accepts array.
+   // since params is now an array we cannot pass that to the call method instead we will use apply method because it accepts array.
    return function(){
      fn.apply(args[0],params)
    }
@@ -2364,17 +2363,16 @@ Function.prototype.mybind = function(...args){
 <span style="text-decoration:underline;">Again:</span> What if the function itself required an argument?
 
 ```javascript
-const fullNameFunction= fullName.bind(person,'22');
+const fullNameFunction = fullName.bind(person,'22');
+fullNameFunction(arg1,arg2);
 ```
 
 In this case the fullNameFunction.
 
 ```javascript
 Function.prototype.mybind = function(...args){
-// we can get the context using this
    let fn = this;
    let params = args.slice(1); 
-   // since params is now an array we cannot pass that to the call        method instead we will use apply method because it accepts array.
    return function(...args2){
       fn.apply(args[0],[...params,...args])
    }
