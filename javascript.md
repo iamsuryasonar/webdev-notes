@@ -130,6 +130,9 @@ javascript object guess output problems:
 
 # Javascript questions and answers
 
+### Q.Execution of javascript
+[Resource](https://www.javascripttutorial.net/javascript-execution-context/)
+
 ### Q.What is webpack?
 
 -> Webpack is a popular module bundler for JavaScript applications. It is primarily used to manage and bundle the dependencies and assets of a web application, such as JavaScript files, CSS stylesheets, images, and other resources.Webpack takes a modular approach to application development, allowing developers to split their codebase into smaller modules that can be organised and managed more efficiently. It analyses the dependencies between these modules and creates a dependency graph. Based on this graph, it then bundles the modules together into a single or multiple optimised bundles that can be loaded by the browser.
