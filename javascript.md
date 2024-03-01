@@ -1803,7 +1803,7 @@ When used inside a regular function, the value of this depends on how the functi
 
 - Arrow Functions:
 
-Arrow functions do not have their own this context but inherit this from the enclosing context at the time they are defined. This behaviour makes them particularly useful when you want to preserve the surrounding context.
+Arrow functions create a closure over the this value of its surrounding scope, which means arrow functions behave as if they are "auto-bound" — no matter how it's invoked, this is bound to what it was when the function was created.
 
 - Event Handlers:
 
