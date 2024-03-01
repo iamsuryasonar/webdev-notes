@@ -1799,7 +1799,7 @@ When used in the global scope or outside of any function, this refers to the glo
 
 - Function Context:
 
-When used inside a regular function, the value of this depends on how the function is called. If the function is called as a method of an object, this refers to the object itself. If the function is called standalone, this refers to the global object (strict mode) or undefined (non-strict mode).
+When used inside a regular function, the value of this depends on how the function is called. If the function is called as a method of an object, this refers to the object itself. If the function is called standalone, this refers to the global object (non-strict mode) or undefined (strict mode).
 
 - Arrow Functions:
 
