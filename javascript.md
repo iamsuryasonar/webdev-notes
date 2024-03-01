@@ -133,6 +133,9 @@ javascript object guess output problems:
 
 # Javascript questions and answers
 
+### Q.Execution of javascript
+[Resource](https://www.javascripttutorial.net/javascript-execution-context/)
+
 ### Q.What is webpack?
 
 -> Webpack is a popular module bundler for JavaScript applications. It is primarily used to manage and bundle the dependencies and assets of a web application, such as JavaScript files, CSS stylesheets, images, and other resources.Webpack takes a modular approach to application development, allowing developers to split their codebase into smaller modules that can be organised and managed more efficiently. It analyses the dependencies between these modules and creates a dependency graph. Based on this graph, it then bundles the modules together into a single or multiple optimised bundles that can be loaded by the browser.
@@ -1859,11 +1862,11 @@ When used in the global scope or outside of any function, this refers to the glo
 
 - Function Context:
 
-When used inside a regular function, the value of this depends on how the function is called. If the function is called as a method of an object, this refers to the object itself. If the function is called standalone, this refers to the global object (strict mode) or undefined (non-strict mode).
+When used inside a regular function, the value of this depends on how the function is called. If the function is called as a method of an object, this refers to the object itself. If the function is called standalone, this refers to the global object (non-strict mode) or undefined (strict mode).
 
 - Arrow Functions:
 
-Arrow functions do not have their own this context but inherit this from the enclosing context at the time they are defined. This behaviour makes them particularly useful when you want to preserve the surrounding context.
+Arrow functions create a closure over the this value of its surrounding scope, which means arrow functions behave as if they are "auto-bound" — no matter how it's invoked, this is bound to what it was when the function was created.
 
 - Event Handlers:
 
@@ -2294,7 +2297,7 @@ const person = {
    lastName:'Doe'
 }
 function fullName(age){
-   console.log('My name is '+this.firstName+' '+this.lastName+' '+I am
+   console.log('My name is '+this.firstName+' '+this.lastName+' '+'I am
 '+age+' years old')
 }
 
@@ -2305,7 +2308,7 @@ fullName.call(person,'22')
 
 // apply method also works same as call method but we pass function //arguments in an array
 
-fullName.apply(person,[22]
+fullName.apply(person,[22])
 
 // bind method is exactly same as call but instead of directly invoking // the function it returns the function which could be called later
 
@@ -2355,7 +2358,7 @@ const person = {
    lastName:'Doe'
 }
 function fullName(age){
-   console.log('My name is '+this.firstName+' '+this.lastName+' '+I am
+   console.log('My name is '+this.firstName+' '+this.lastName+' '+'I am
 '+age+' years old')
 }
 
@@ -2408,30 +2411,28 @@ Function.prototype.mybind = function(...args){
 
 ```javascript
 Function.prototype.mybind = function(...args){
-// we can get the context using this
    let fn= this;
    let params = args.slice(1); 
-   // since params is now an array we cannot pass that to the call        method instead we will use apply method because it accepts array.
+   // since params is now an array we cannot pass that to the call method instead we will use apply method because it accepts array.
    return function(){
      fn.apply(args[0],params)
    }
 }
 ```
 
-<span style="text-decoration:underline;">Again:</span> What if the this function itself required an argument?
+<span style="text-decoration:underline;">Again:</span> What if the function itself required an argument?
 
 ```javascript
-const fullNameFunction= fullName.bind(person,'22');
+const fullNameFunction = fullName.bind(person,'22');
+fullNameFunction(arg1,arg2);
 ```
 
-In this case the fullName function.
+In this case the fullNameFunction.
 
 ```javascript
 Function.prototype.mybind = function(...args){
-// we can get the context using this
    let fn = this;
    let params = args.slice(1); 
-   // since params is now an array we cannot pass that to the call        method instead we will use apply method because it accepts array.
    return function(...args2){
       fn.apply(args[0],[...params,...args])
    }
