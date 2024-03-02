@@ -507,7 +507,7 @@ One important detail is that the executor function passed to the Promise() const
 
 __resolve() is not onFulfill()__
 
-One more detail I'd like to emphasize, because it confused me for a while, is that the resolve() and reject() callbacks passed to the Promise() constructor's executor function are not the callbacks later passed to the then() method. This seems obvious in retrospect, but the apparent connection had me spinning in circles for too long. There is definitely a connection, but it's a loose, dynamic one.
+One more detail I'd like to emphasize, is that the resolve() and reject() callbacks passed to the Promise() constructor's executor function are not the callbacks later passed to the then() method. There is definitely a connection, but it's a loose, dynamic one.
 
 Instead, the resolve() and reject() callbacks are functions supplied by the "system", and are passed to the executor function by the Promise constructor when you create a promise. When the resolve() function is called, system code is executed that potentially changes the state of the promise and eventually leads to an onFulfilled() callback being called asynchronously. Don't think of calling resolve() as being a tight wrapper for calling onFulfill()!
 
@@ -517,7 +517,7 @@ and mean while rest of the codes are executed synchronously.
 
 
 
-## Here's a breakdown of the key points you've mentioned:
+## Here's a breakdown of the key points:
 
 - Executor Function: The executor function passed to the Promise constructor is executed synchronously. This means that any code inside the executor function is executed immediately when the Promise is created.
 
