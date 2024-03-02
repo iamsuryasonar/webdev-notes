@@ -13,6 +13,11 @@
     - [Promise syntax](#promise-syntax)
     - [Promise.all](#promiseall-1)
     - [Polyfill of Promise.all()](#polyfill-of-promiseall)
+- [How Promise is executed -](#how-promise-is-executed--)
+  - [Here's a breakdown of the key points:](#heres-a-breakdown-of-the-key-points)
+- [Async/Await](#asyncawait)
+
+
 
 
 # Promises
@@ -501,7 +506,7 @@ customPromise(arrayOfPromise).then((data) => {
 ```
 
 
-# Important to know-
+# How Promise is executed -
 
 One important detail is that the executor function passed to the Promise() constructor is called immediately (before the constructor returns the promise); whereas the handler functions passed to the then() method will not be called till later (if ever).
 
@@ -528,3 +533,6 @@ and mean while rest of the codes are executed synchronously.
 - Synchronous Execution: While the then() callback is waiting in the microtask queue, the rest of the code continues to execute synchronously. This means that any code after the then() method is executed before the then() callback is executed.
 
 
+# Async/Await
+
+[click here...](./async_await.md)
