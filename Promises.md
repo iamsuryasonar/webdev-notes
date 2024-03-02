@@ -499,3 +499,32 @@ customPromise(arrayOfPromise).then((data) => {
     console.log(err)
 })
 ```
+
+
+# Important to know-
+
+One important detail is that the executor function passed to the Promise() constructor is called immediately (before the constructor returns the promise); whereas the handler functions passed to the then() method will not be called till later (if ever).
+
+__resolve() is not onFulfill()__
+
+One more detail I'd like to emphasize, because it confused me for a while, is that the resolve() and reject() callbacks passed to the Promise() constructor's executor function are not the callbacks later passed to the then() method. This seems obvious in retrospect, but the apparent connection had me spinning in circles for too long. There is definitely a connection, but it's a loose, dynamic one.
+
+Instead, the resolve() and reject() callbacks are functions supplied by the "system", and are passed to the executor function by the Promise constructor when you create a promise. When the resolve() function is called, system code is executed that potentially changes the state of the promise and eventually leads to an onFulfilled() callback being called asynchronously. Don't think of calling resolve() as being a tight wrapper for calling onFulfill()!
+
+In short the executor function passed to the promise constructor is executed synchronously.
+and when the promise is resolved its time to execute the then function, it puts the callback of then function to the microtask queue which is watched by the event loop to put into the call stack when call stack is empty.
+and mean while rest of the codes are executed synchronously.
+
+
+
+## Here's a breakdown of the key points you've mentioned:
+
+- Executor Function: The executor function passed to the Promise constructor is executed synchronously. This means that any code inside the executor function is executed immediately when the Promise is created.
+
+- resolve() and reject(): The resolve() and reject() functions are not the same as the onFulfilled() and onRejected() callbacks passed to the then() method. Instead, they are functions provided by the JavaScript runtime environment. When resolve() is called, it triggers the execution of the onFulfilled() callback passed to then().
+
+- Microtask Queue and Event Loop: When a Promise is resolved, the then() callback is added to the microtask queue. The event loop continuously checks the microtask queue for tasks to execute. When the call stack is empty, the event loop processes the microtask queue and executes the then() callback.
+
+- Synchronous Execution: While the then() callback is waiting in the microtask queue, the rest of the code continues to execute synchronously. This means that any code after the then() method is executed before the then() callback is executed.
+
+
