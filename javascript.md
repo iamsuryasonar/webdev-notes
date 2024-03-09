@@ -2514,6 +2514,7 @@ const result = composedFunction(7);
 
 console.log(result); // Output: 36
 ```
+The debate between composition and inheritance is an ongoing one. While inheritance is about extending properties and behaviors from a base entity, function composition is about combining simple functions to create more complex ones, promoting modularity and reusability.
 
 ### Q. Events in javascript?
 
