@@ -2492,7 +2492,30 @@ let multiplyBy2 = multiply(2);
 multiplyBy2(5) //10
 ```
 
-### Q . Events in javascript?
+### Q. Function composition
+-> Function composition is the process of chaining together multiple functions to form a new function. It involves applying a series of transformations or operations to an input value, where the output of one function becomes the input of the next function in the composition chain.
+Use case:
+
+```javascript
+const add5 = (x) => x + 5;
+const multiplyBy3 = (x) => x * 3;
+const subtract10 = (x) => x - 10;
+
+const compose = (...functions) => {
+  return (input) => {
+    return functions.reduceRight((acc, fn) => {
+      return fn(acc);
+    }, input);
+  };
+};
+
+const composedFunction = compose(subtract10, multiplyBy3, add5);// evaluate right to left 
+const result = composedFunction(7);
+
+console.log(result); // Output: 36
+```
+
+### Q. Events in javascript?
 
 -> In JavaScript, events are actions or occurrences that happen in the browser or within a web page. They allow you to respond to user interactions and perform specific actions based on those interactions. Here's what you need to know about events in JavaScript:
 
