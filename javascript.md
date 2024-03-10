@@ -2620,10 +2620,9 @@ Use throttling when you have to make a request after a certain limit(delay). eg.
 function debounce(func, delay) {
   let timeoutId;
   return function(...args) {
-    const context = this;
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
-      func.apply(context, args);
+      func.apply(this, args);
     }, delay);
   };
 }
