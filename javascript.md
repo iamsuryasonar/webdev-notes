@@ -3760,6 +3760,82 @@ function isPalindrome(str) {
 console.log(isPalindrome('level'));
 // Output: true
 ```
+6. Find the frequency of elements in array (using reduce or forEach).
+7. Group items on the basis of age of given array of object.
+```javascript
+let people=[
+    {name:'Alice',age:21},
+    {name:'Max',age:22},
+    {name:'Jane',age:21},
+]
+```
+9. Program to check a string with balanced brackets.\
+```javascript
+function isBalanced(str) {
+    const stack = [];
+    const bracketsMap = {
+        '(': ')',
+        '[': ']',
+        '{': '}'
+    };
+
+    for (let char of str) {
+        // If the current character is an opening bracket, push it onto the stack
+        if (bracketsMap[char]) {
+            stack.push(char);
+        }
+        // If the current character is a closing bracket
+        else {
+            // Pop the top element from the stack
+            const lastBracket = stack.pop();
+
+            // If the popped element doesn't match the corresponding opening bracket, return false
+            if (bracketsMap[lastBracket] !== char) {
+                return false;
+            }
+        }
+    }
+
+    // If there are remaining elements in the stack, return false (unbalanced)
+    return stack.length === 0;
+}
+
+// Example usage:
+console.log(isBalanced("({})")); // Output: true
+console.log(isBalanced("[()]{}")); // Output: true
+console.log(isBalanced("[(])")); // Output: false
+```
+11. Find the pairs of array element for which sum is equal to given target value (Two Sum Problem).
+```javascript
+function findPairsWithSum(arr, target) {
+    const map = {};
+    const pairs = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        const complement = target - arr[i];
+
+        // Check if the complement exists in the map
+        if (map[complement] !== undefined) {
+            // If it exists, push the pair into the result
+            pairs.push([map[complement], i]);
+        }
+
+        // Store the current element and its index in the map
+        map[arr[i]] = i;
+    }
+
+    return pairs;
+}
+
+// Example usage:
+const array = [2, 7, 11, 15, 3, 6, 9];
+const targetSum = 9;
+console.log(findPairsWithSum(array, targetSum)); // Output: [[0, 5], [1, 4], [2, 3]]
+```
+
+13. Find the missing number from unsorted array with O(n) complexity.
+14. Find the missing number from sorted array with O(n) complexity.
+15. 
 
 # Bonus
 
