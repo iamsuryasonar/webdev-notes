@@ -3701,6 +3701,65 @@ use currying.
 - Repeat a string  
   - str.repeat(num) method could be used
 
+1. Question: Write a function that reverses a given string.
+    ```javascript
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+
+console.log(reverseString('Hello'));
+// Output: 'olleH'
+```
+2. Question: Write a function that finds the longest word in a sentence.
+```javascript
+function findLongestWord(sentence) {
+  const words = sentence.split(' ');
+  let longestWord = '';
+
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > longestWord.length) {
+      longestWord = words[i];
+    }
+  }
+
+  return longestWord;
+}
+
+console.log(findLongestWord('The quick brown fox jumps over the lazy dog'));
+// Output: 'quick'
+```
+3. Question: Write a function that removes duplicates from an array.
+```javascript
+function removeDuplicates(arr) {
+  return [...new Set(arr)];
+}
+
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5]));
+// Output: [1, 2, 3, 4, 5]
+```
+4. Question: Given an array containing numbers from 1 to N, with one number missing, find the missing number.
+```javascript
+function findMissingNumber(arr) {
+  const n = arr.length + 1;
+  const sum = (n * (n + 1)) / 2;
+  const arrSum = arr.reduce((acc, curr) => acc + curr, 0);
+
+  return sum - arrSum;
+}
+
+console.log(findMissingNumber([1, 2, 3, 5]));
+// Output: 4
+```
+5. Question: Write a function that checks if a given string is a palindrome.
+```javascript
+function isPalindrome(str) {
+  const reversedStr = str.split('').reverse().join('');
+  return str === reversedStr;
+}
+
+console.log(isPalindrome('level'));
+// Output: true
+```
 
 # Bonus
 
