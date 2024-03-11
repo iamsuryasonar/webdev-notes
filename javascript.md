@@ -2830,7 +2830,7 @@ console.log('   Hello, World!   '.trimEnd()); // Output:    Hello, World!
 console.log('   Hello, World!   '.trimStart()); // Output: Hello, World!
 
 ```
-### Array methods
+### Q. Array methods
 
 #### Iteration Methods:
 
