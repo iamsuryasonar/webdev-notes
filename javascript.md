@@ -2830,7 +2830,239 @@ console.log('   Hello, World!   '.trimEnd()); // Output:    Hello, World!
 console.log('   Hello, World!   '.trimStart()); // Output: Hello, World!
 
 ```
+### Array methods
 
+#### Iteration Methods:
+
+##### forEach(): Executes a provided function once for each array element.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Print each element of the array
+numbers.forEach(number => {
+    console.log(number);
+});
+```
+##### map(): Creates a new array by calling a function on each array element.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Create a new array by doubling each element
+const doubledNumbers = numbers.map(number => {
+    return number * 2;
+});
+
+console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
+```
+##### filter(): Creates a new array with elements that pass a test.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Create a new array with only even numbers
+const evenNumbers = numbers.filter(number => {
+    return number % 2 === 0;
+});
+
+console.log(evenNumbers); // Output: [2, 4]
+```
+##### find(): Returns the first element in the array that satisfies a provided testing function.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Find the first element greater than 3
+const foundNumber = numbers.find(number => {
+    return number > 3;
+});
+
+console.log(foundNumber); // Output: 4
+```
+##### findIndex(): Returns the index of the first element in the array that satisfies a provided testing function.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Find the index of the first element greater than 3
+const foundIndex = numbers.findIndex(number => {
+    return number > 3;
+});
+
+console.log(foundIndex); // Output: 3
+```
+#### Manipulation Methods:
+
+##### push(): Adds one or more elements to the end of an array and returns the new length.
+```javascript
+const numbers = [1, 2, 3];
+
+// Add a new element to the end of the array
+numbers.push(4);
+
+console.log(numbers); // Output: [1, 2, 3, 4]
+```
+##### pop(): Removes the last element from an array and returns that element.
+```javascript
+const numbers = [1, 2, 3, 4];
+
+// Remove the last element from the array
+const lastNumber = numbers.pop();
+
+console.log(lastNumber); // Output: 4
+console.log(numbers); // Output: [1, 2, 3]
+```
+##### shift(): Removes the first element from an array and returns that element.
+```javascript
+const numbers = [1, 2, 3, 4];
+
+// Remove the first element from the array
+const firstNumber = numbers.shift();
+
+console.log(firstNumber); // Output: 1
+console.log(numbers); // Output: [2, 3, 4]
+```
+##### unshift(): Adds one or more elements to the beginning of an array and returns the new length.
+```javascript
+const numbers = [2, 3, 4];
+
+// Add a new element to the beginning of the array
+numbers.unshift(1);
+
+console.log(numbers); // Output: [1, 2, 3, 4]
+```
+##### splice(): Changes the contents of an array by removing or replacing existing elements and/or adding new elements.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Remove two elements starting from index 1 and replace with 6 and 7
+const removedNumbers = numbers.splice(1, 2, 6, 7);
+
+console.log(removedNumbers); // Output: [2, 3]
+console.log(numbers); // Output: [1, 6, 7, 4, 5]
+```
+#### Concatenation and Joining:
+
+##### concat(): Joins two or more arrays and returns a new array.
+```javascript
+const numbers1 = [1, 2];
+const numbers2 = [3, 4];
+
+// Concatenate two arrays
+const combinedNumbers = numbers1.concat(numbers2);
+
+console.log(combinedNumbers); // Output: [1, 2, 3, 4]
+```
+##### join(): Joins all elements of an array into a string.
+```javascript
+const fruits = ['apple', 'banana', 'orange'];
+
+// Join array elements with a comma
+const joinedString = fruits.join(', ');
+
+console.log(joinedString); // Output: "apple, banana, orange"
+```
+#### Slicing and Sub-Arrays:
+
+##### slice(): Returns a shallow copy of a portion of an array into a new array object.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Get a sub-array from index 1 to index 3 (exclusive)
+const subArray = numbers.slice(1, 3);
+
+console.log(subArray); // Output: [2, 3]
+```
+#### Searching and Sorting:
+
+##### indexOf(): Returns the first index at which a given element can be found in the array, or -1 if it is not present.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Find the index of the element 3
+const index = numbers.indexOf(3);
+
+console.log(index); // Output: 2
+```
+##### lastIndexOf(): Returns the last index at which a given element can be found in the array, or -1 if it is not present.
+```javascript
+const numbers = [1, 2, 3, 4, 5, 3];
+
+// Find the last index of the element 3
+const lastIndex = numbers.lastIndexOf(3);
+
+console.log(lastIndex); // Output: 5
+```
+##### includes(): Determines whether an array includes a certain element.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Check if the array includes the element 3
+const includes3 = numbers.includes(3);
+
+console.log(includes3); // Output: true
+```
+##### sort(): Sorts the elements of an array in place and returns the sorted array.
+```javascript
+const numbers = [3, 1, 4, 1, 5, 9, 2, 6];
+
+// Sort the array in ascending order
+numbers.sort((a, b) => a - b);
+
+console.log(numbers); // Output: [1, 1, 2, 3, 4, 5, 6, 9]
+```
+#### Conversion Methods:
+
+##### toString(): Returns a string representing the array and its elements.
+```javascript
+const numbers = [1, 2, 3];
+
+// Convert array to string
+const stringRepresentation = numbers.toString();
+
+console.log(stringRepresentation); // Output: "1, 2, 3"
+```
+##### toLocaleString(): Returns a string representing the elements of the array.
+```javascript
+const numbers = [1000, 2000, 3000];
+
+// Convert array elements to locale string
+const localeString = numbers.toLocaleString();
+
+console.log(localeString); // Output: "1,000, 2,000, 3,000"
+```
+#### Utility Methods:
+
+##### isArray(): Determines whether the passed value is an array.
+
+```javascript
+console.log(Array.isArray([])); // Output: true
+console.log(Array.isArray({})); // Output: false
+```
+##### reverse(): Reverses the elements of an array in place.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Reverse the array
+numbers.reverse();
+
+console.log(numbers); // Output: [5, 4, 3, 2, 1]
+```
+##### fill(): Fills all the elements of an array with a static value.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Fill the array with value 0 from index 2 to index 4
+numbers.fill(0, 2, 4);
+
+console.log(numbers); // Output: [1, 2, 0, 0, 5]
+```
+##### copyWithin(): Copies array elements within the array, to and from specified positions.
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+
+// Copy elements from index 0 to index 3 to index 1
+numbers.copyWithin(1, 0, 3);
+
+console.log(numbers); // Output: [1, 1, 2, 3, 5]
+```
 
 ### Boxing and unboxing
 ->  
