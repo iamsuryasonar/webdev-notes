@@ -3579,9 +3579,8 @@ Some interview questions -
 # problem solving:
 
 1. Reverse Words in a Sentence
-2. Find the Nth Largest Element in an Array
-3. Implementing a Class Hierarchy with Inheritance
-
+2. Implementing a Class Hierarchy with Inheritance
+3. Find the Nth Largest Element in an Array (Hard)
 - Create a base class called Shape with the following properties and methods:
   - name: a string representing the name of the shape.
   - area(): a method that calculates and returns the area of the shape (to be implemented by subclasses).
