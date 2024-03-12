@@ -3590,7 +3590,6 @@ Some interview questions -
   - Implement the area() method to calculate and return the area of the rectangle.
   
 4. Finding the Longest Substring Without Repeating Characters
-5. Sum of Two Numbers in an Array
 6. Write a JavaScript function to check if a given string is a palindrome (reads the same forwards and backwards).
 7. Flatten an array- arr.flat(2);
 8. remove falsy value from an array, arr.filter(Boolean);
