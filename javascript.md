@@ -1,16 +1,17 @@
 - [Javascript questions and answers](#javascript-questions-and-answers)
-    - [Q.What is webpack?](#qwhat-is-webpack)
+    - [Q. Execution of javascript](#q-execution-of-javascript)
+    - [Q. What is webpack?](#q-what-is-webpack)
     - [Q. Tree shaking?](#q-tree-shaking)
     - [Q. What is Babel?](#q-what-is-babel)
     - [Q. Scope?](#q-scope)
     - [Q. Scope chaining or lexical scoping?](#q-scope-chaining-or-lexical-scoping)
     - [Q. Difference between Var, Let and Const?](#q-difference-between-var-let-and-const)
     - [Q. undefined vs null](#q-undefined-vs-null)
-    - [Q.Template literals  ${} and  \`\`](#qtemplate-literals---and--)
+    - [Q. Template literals](#q-template-literals)
     - [Q. Object.is()](#q-objectis)
     - [Q. == vs ===](#q--vs-)
     - [Q. Optional chaining?](#q-optional-chaining)
-    - [Q.?? (nullish coalescing operator)](#q-nullish-coalescing-operator)
+    - [Q. ?? (nullish coalescing operator)](#q--nullish-coalescing-operator)
     - [Q. !! Double negation operator?](#q--double-negation-operator)
     - [Q. Deep Copy?](#q-deep-copy)
     - [Q. Shallow Copy](#q-shallow-copy)
@@ -25,15 +26,15 @@
     - [Q. Try/catch](#q-trycatch)
     - [Q. Function statement](#q-function-statement)
     - [Q. Function expression](#q-function-expression)
-    - [Q.Difference between function statement and function expression?](#qdifference-between-function-statement-and-function-expression)
+    - [Q. Difference between function statement and function expression?](#q-difference-between-function-statement-and-function-expression)
     - [Q. Function declaration](#q-function-declaration)
     - [Q. Named function expression](#q-named-function-expression)
     - [Q.Anonymous function?](#qanonymous-function)
     - [Q. Function arguments and function parameters](#q-function-arguments-and-function-parameters)
     - [Q. Higher order functions](#q-higher-order-functions)
-    - [Q.Arguments array?](#qarguments-array)
+    - [Q. Arguments array?](#q-arguments-array)
     - [Q. Arrow functions and its advantages?](#q-arrow-functions-and-its-advantages)
-    - [Q.Why is it said that the arrow function does not have its own this context?](#qwhy-is-it-said-that-the-arrow-function-does-not-have-its-own-this-context)
+    - [Q. Why is it said that the arrow function does not have its own this context?](#q-why-is-it-said-that-the-arrow-function-does-not-have-its-own-this-context)
     - [Q. Difference between this context of arrow function and regular function?](#q-difference-between-this-context-of-arrow-function-and-regular-function)
     - [Q. Immediately invoked function?](#q-immediately-invoked-function)
     - [Q. Promises?](#q-promises)
@@ -57,20 +58,52 @@
     - [Q. Constructor function?](#q-constructor-function)
     - [Q. Commonly used methods from the Object class](#q-commonly-used-methods-from-the-object-class)
     - [Q. getter and setter?](#q-getter-and-setter)
-    - [Q.Prototype?](#qprototype)
+    - [Q. Prototype?](#q-prototype)
     - [Q. call, apply and bind?](#q-call-apply-and-bind)
     - [Q. Polyfill for bind?](#q-polyfill-for-bind)
     - [Q. Function currying?](#q-function-currying)
-    - [Q . Events in javascript?](#q--events-in-javascript)
+    - [Q. Function composition](#q-function-composition)
+    - [Q. Events in javascript?](#q-events-in-javascript)
     - [Q. Event handling?](#q-event-handling)
     - [Q. Event propagation - bubbling and capturing?](#q-event-propagation---bubbling-and-capturing)
     - [Q. Debouncing and throttling?](#q-debouncing-and-throttling)
     - [Q. Implement debouncing?](#q-implement-debouncing)
-    - [Q.Implement throttling](#qimplement-throttling)
+    - [Q. Implement throttling](#q-implement-throttling)
     - [Q. Generator Function?](#q-generator-function)
     - [Q. Async and defer?](#q-async-and-defer)
     - [Q. String methods](#q-string-methods)
-    - [Boxing and unboxing](#boxing-and-unboxing)
+    - [Q. Array methods](#q-array-methods)
+      - [Iteration Methods:](#iteration-methods)
+        - [forEach(): Executes a provided function once for each array element.](#foreach-executes-a-provided-function-once-for-each-array-element)
+        - [map(): Creates a new array by calling a function on each array element.](#map-creates-a-new-array-by-calling-a-function-on-each-array-element)
+        - [filter(): Creates a new array with elements that pass a test.](#filter-creates-a-new-array-with-elements-that-pass-a-test)
+        - [find(): Returns the first element in the array that satisfies a provided testing function.](#find-returns-the-first-element-in-the-array-that-satisfies-a-provided-testing-function)
+        - [findIndex(): Returns the index of the first element in the array that satisfies a provided testing function.](#findindex-returns-the-index-of-the-first-element-in-the-array-that-satisfies-a-provided-testing-function)
+      - [Manipulation Methods:](#manipulation-methods)
+        - [push(): Adds one or more elements to the end of an array and returns the new length.](#push-adds-one-or-more-elements-to-the-end-of-an-array-and-returns-the-new-length)
+        - [pop(): Removes the last element from an array and returns that element.](#pop-removes-the-last-element-from-an-array-and-returns-that-element)
+        - [shift(): Removes the first element from an array and returns that element.](#shift-removes-the-first-element-from-an-array-and-returns-that-element)
+        - [unshift(): Adds one or more elements to the beginning of an array and returns the new length.](#unshift-adds-one-or-more-elements-to-the-beginning-of-an-array-and-returns-the-new-length)
+        - [splice(): Changes the contents of an array by removing or replacing existing elements and/or adding new elements.](#splice-changes-the-contents-of-an-array-by-removing-or-replacing-existing-elements-andor-adding-new-elements)
+      - [Concatenation and Joining:](#concatenation-and-joining)
+        - [concat(): Joins two or more arrays and returns a new array.](#concat-joins-two-or-more-arrays-and-returns-a-new-array)
+        - [join(): Joins all elements of an array into a string.](#join-joins-all-elements-of-an-array-into-a-string)
+      - [Slicing and Sub-Arrays:](#slicing-and-sub-arrays)
+        - [slice(): Returns a shallow copy of a portion of an array into a new array object.](#slice-returns-a-shallow-copy-of-a-portion-of-an-array-into-a-new-array-object)
+      - [Searching and Sorting:](#searching-and-sorting)
+        - [indexOf(): Returns the first index at which a given element can be found in the array, or -1 if it is not present.](#indexof-returns-the-first-index-at-which-a-given-element-can-be-found-in-the-array-or--1-if-it-is-not-present)
+        - [lastIndexOf(): Returns the last index at which a given element can be found in the array, or -1 if it is not present.](#lastindexof-returns-the-last-index-at-which-a-given-element-can-be-found-in-the-array-or--1-if-it-is-not-present)
+        - [includes(): Determines whether an array includes a certain element.](#includes-determines-whether-an-array-includes-a-certain-element)
+        - [sort(): Sorts the elements of an array in place and returns the sorted array.](#sort-sorts-the-elements-of-an-array-in-place-and-returns-the-sorted-array)
+      - [Conversion Methods:](#conversion-methods)
+        - [toString(): Returns a string representing the array and its elements.](#tostring-returns-a-string-representing-the-array-and-its-elements)
+        - [toLocaleString(): Returns a string representing the elements of the array.](#tolocalestring-returns-a-string-representing-the-elements-of-the-array)
+      - [Utility Methods:](#utility-methods)
+        - [isArray(): Determines whether the passed value is an array.](#isarray-determines-whether-the-passed-value-is-an-array)
+        - [reverse(): Reverses the elements of an array in place.](#reverse-reverses-the-elements-of-an-array-in-place)
+        - [fill(): Fills all the elements of an array with a static value.](#fill-fills-all-the-elements-of-an-array-with-a-static-value)
+        - [copyWithin(): Copies array elements within the array, to and from specified positions.](#copywithin-copies-array-elements-within-the-array-to-and-from-specified-positions)
+    - [Q. Boxing and unboxing](#q-boxing-and-unboxing)
     - [Q.  for(let i=0; i\<=3; i++){}, explain to me which block does let i belong?](#q--forlet-i0-i3-i-explain-to-me-which-block-does-let-i-belong)
     - [Q. If i use var instead of let what would be its scope?](#q-if-i-use-var-instead-of-let-what-would-be-its-scope)
     - [Q. Hoisting?](#q-hoisting)
@@ -133,10 +166,10 @@ javascript object guess output problems:
 
 # Javascript questions and answers
 
-### Q.Execution of javascript
+### Q. Execution of javascript
 [Resource](https://www.javascripttutorial.net/javascript-execution-context/)
 
-### Q.What is webpack?
+### Q. What is webpack?
 
 -> Webpack is a popular module bundler for JavaScript applications. It is primarily used to manage and bundle the dependencies and assets of a web application, such as JavaScript files, CSS stylesheets, images, and other resources.Webpack takes a modular approach to application development, allowing developers to split their codebase into smaller modules that can be organised and managed more efficiently. It analyses the dependencies between these modules and creates a dependency graph. Based on this graph, it then bundles the modules together into a single or multiple optimised bundles that can be loaded by the browser.
 
@@ -333,7 +366,7 @@ undefined==null //true
 undefined===null //false
 ```
 
-### Q.Template literals  ${} and  ``
+### Q. Template literals
 
 -> Template literals, introduced in ECMAScript 2015 (ES6), are a way to work with strings in JavaScript that allows for easy interpolation of variables and multiline strings. They provide a more convenient and readable syntax for creating strings compared to traditional string concatenation.
 
@@ -470,7 +503,7 @@ So, the entire expression evaluates to true, and console.log will output true to
 
 For example, formData?.hint, if formData is null or undefined, accessing hint directly would result in an error. However, by using the ?. operator, you can safely access the hint property, and if formData is null or undefined, the expression will simply evaluate to undefined without causing an error.
 
-### Q.?? (nullish coalescing operator)
+### Q. ?? (nullish coalescing operator)
 
 -> The ?? operator is called the "nullish coalescing operator," and it is used in JavaScript to provide a default value for a variable or expression when the value on the left-hand side is null or undefined. It's specifically designed to handle nullish values and differs from the || (logical OR) operator, which considers values like 0, false, and empty strings "" as falsy and would return the right-hand side expression even if the left-hand side is falsy.
 
@@ -734,7 +767,7 @@ console.log('hello world')
 }
 ```
 
-### Q.Difference between function statement and function expression?
+### Q. Difference between function statement and function expression?
 
 -> The major difference between function statement and expression is Hoisting.
 
@@ -788,7 +821,7 @@ A function parameter is a value received by a function.
 
 -> A function that takes a function as an argument or returns a function from it is known as higher order functions.
 
-### Q.Arguments array?
+### Q. Arguments array?
 -> Arguments is an array-like object accessible inside functions that contains the values of the arguments passed to that function.
 
 ```javascript
@@ -883,7 +916,7 @@ but in case of the function fn() the this value is the global object because, Wh
 
 since the method b belongs to the obj, its this value will be the obj itself.
 
-### Q.Why is it said that the arrow function does not have its own this context?
+### Q. Why is it said that the arrow function does not have its own this context?
 
 -> The statement that "arrow functions do not have their own this context" refers to the fact that arrow functions behave differently than regular functions when it comes to the binding of the this keyword.
 
@@ -2093,7 +2126,7 @@ try {
 }
 ```
 
-### Q.Prototype?
+### Q. Prototype?
 
 ->Prototype is a mechanism by which javascript objects inherit features from one another.
 
@@ -2643,7 +2676,7 @@ input.addEventListener('input', debouncedExpensiveOperation);
 
 In this example, the expensiveOperation function is wrapped inside the debounce function, which ensures that the expensiveOperation function is only executed after a 300-millisecond delay from the last time the input event was triggered. Adjust the delay value as needed based on the requirements of your specific use case.
 
-### Q.Implement throttling
+### Q. Implement throttling
 -> Throttling is a technique that limits the execution of a function to once in every specified time interval.
 
 
@@ -3064,7 +3097,7 @@ numbers.copyWithin(1, 0, 3);
 console.log(numbers); // Output: [1, 1, 2, 3, 5]
 ```
 
-### Boxing and unboxing
+### Q. Boxing and unboxing
 ->  
 Boxing is the process in which a primitive value is wrapped in an Object. When a primitive type is treated as an object, e.g., calling the toUpperCase() function, JavaScript would automatically wrap the primitive type into the corresponding object type. This new object type is then linked to the related built-in <.prototype>, so you can use prototype methods on primitive types.
 
