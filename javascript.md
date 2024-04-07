@@ -3547,6 +3547,10 @@ coercion
 
 [https://youtu.be/00vjwv2BJqE?si=ABcUQ7cOuukh8nnH](https://youtu.be/00vjwv2BJqE?si=ABcUQ7cOuukh8nnH)
 
+The Wrapper Object-
+All primitives have no properties. Strings are primitives; therefore, Strings have no properties. But how is it possible that we can access toLowerCase() method.
+[https://javascriptrefined.io/the-wrapper-object-400311b29151](https://javascriptrefined.io/the-wrapper-object-400311b29151)
+
 Prototype, class, constructor function, new keyword.
 
 [https://www.freecodecamp.org/news/a-beginners-guide-to-javascripts-prototype/](https://www.freecodecamp.org/news/a-beginners-guide-to-javascripts-prototype/)

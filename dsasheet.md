@@ -8,6 +8,7 @@
 - [String](#string)
 - [Tree](#tree)
 - [Heap](#heap)
+- [Resources](#resources)
 
 Blind 75 Sheet and its questions are below :
 
@@ -133,7 +134,6 @@ Blind 75 Sheet and its questions are below :
 8. Construct Binary Tree from Preorder and Inorder Traversal
 9. Validate Binary Search Tree
 10. Kth Smallest Element in a BST
-11. Lowest Common Ancestor of BST
 12. Implement Trie (Prefix Tree)
 13. Add and Search Word
 14. Word Search II
@@ -146,3 +146,7 @@ Blind 75 Sheet and its questions are below :
 1. Merge K Sorted Lists
 2. Top K Frequent Elements
 3. Find Median from Data Stream
+
+
+## Resources
+[30 day DSA](https://hackernoon.com/30-days-dsa-interview-preparation-plan)
