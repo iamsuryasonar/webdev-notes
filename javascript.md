@@ -112,6 +112,9 @@
 - [Regular Expressions](#regular-expressions)
 - [Resources](#resources)
 - [problem solving:](#problem-solving)
+- [Random](#random)
+      - [Primitive type](#primitive-type)
+      - [Wrapper object coercion](#wrapper-object-coercion)
 - [Bonus](#bonus)
 - [React important Topics](#react-important-topics)
 - [Blind 75 DSA sheet](#blind-75-dsa-sheet)
@@ -3896,7 +3899,74 @@ console.log(findPairsWithSum(array, targetSum)); // Output: [[0, 5], [1, 4], [2,
 
 13. Find the missing number from unsorted array with O(n) complexity.
 14. Find the missing number from sorted array with O(n) complexity.
-15. 
+
+# Random 
+
+#### Primitive type
+Javascript **primitives** are data types that is not an object and do not have properties or methods directly associated with them.
+**Since it is not an object it does not have any prototype linked to it. So how are we accessing methods like toString(), toLowertCase(),toFixed() etc?**
+
+When you try to access any property or method on primitive value, Javascript coerces the primitive to its corresponding object wrapper,
+allowing access to properties and methods via the prototype chain.
+
+#### Wrapper object coercion
+
+All primitive types, except null and undefined, have their corresponding object wrapper types.
+
+```javascript
+var str = 'hello';
+str.custom = 1;
+console.log(str.custom); // -> undefined
+```
+JavaScript creates a wrapper String object, sets its custom property to 1, and then discards it. Basically, it runs something like the following code:
+```javascript
+var str = 'hello';
+var temp = new String(str); // wrapper object
+temp.custom = 1;
+// end of the line for temp
+```
+
+```javascript
+var a = 'hello';             // primitive
+var b = new String('hello'); // wrapper object
+typeof a;  // "string"
+typeof b;  // "object"
+a == b  // true
+a === b // false
+```
+same applies to Numbers as well
+```javascript
+var x = 1;
+var y = new Number(1);
+typeof x;  // "number"
+typeof y;  // "object"
+x == y  // true
+x === y // false
+```
+
+```javascript
+var x = {
+  num: 2,
+  valueOf: function() {
+    return this.num * 2;
+  }
+}
+var y = {
+  num: 3,
+  valueOf: function() {
+    return this.num * 2;
+  }
+}
+console.log(x + y); // 10
+```
+I did not explicitly convert x and y to numbers, yet I was able to add them. This is because the addition coerced them into their primitive values.Basically, behind the scenes, JavaScript did the following:
+```javascript
+var temp = Number(x) + Number(y);
+console.log(temp); // 10
+```
+JavaScript knows what the primitive value of my number-like object is because it looks for and executes the valueOf method. As long as you have this method in your object
+
+
 
 # Bonus
 
