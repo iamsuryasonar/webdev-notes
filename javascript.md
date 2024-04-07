@@ -2676,6 +2676,32 @@ input.addEventListener('input', debouncedExpensiveOperation);
 
 In this example, the expensiveOperation function is wrapped inside the debounce function, which ensures that the expensiveOperation function is only executed after a 300-millisecond delay from the last time the input event was triggered. Adjust the delay value as needed based on the requirements of your specific use case.
 
+***why we need to attach this context***
+
+```javascript
+function debounce(func, delay) {
+  let timeoutId;
+  
+  return function(...args) {
+    const context = this; // Preserve the 'this' context
+    
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(function() {
+      func.apply(context, args); // Use apply to maintain 'this' context
+    }, delay);
+  };
+}
+
+// Example usage
+const debouncedFunction = debounce(function() {
+  console.log(this.name); // this context might get lost
+}, 200);
+
+const obj = { name: 'Debounced Function' };
+debouncedFunction.call(obj); // Output: Debounced Function
+
+```
+
 ### Q. Implement throttling
 -> Throttling is a technique that limits the execution of a function to once in every specified time interval.
 
