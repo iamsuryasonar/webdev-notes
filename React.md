@@ -1700,6 +1700,31 @@ Memo optimisation did not work since for every parent component re-render child 
 
 So, to solve this issue, we have useCallback that caches the function when dependencies are same as before. 
 
+### Why `const` is used before `useState` in React?
+
+In JavaScript, `const` is used to declare variables that cannot be reassigned to a different value. When declaring state variables using `useState` hook in React, `const` is used because the state variable itself (e.g., `isOpen` in the example) will not be reassigned. Instead, the `useState` hook returns an array with two elements: the current state value and a function to update that value. 
+
+Here's a breakdown:
+
+- `const [isOpen, setIsOpen] = useState(false);`
+
+In this line of code:
+- `isOpen` is a constant variable holding the current state value.
+- `setIsOpen` is a function provided by the `useState` hook to update the state value. 
+
+Although the value of `isOpen` can change when the state is updated using `setIsOpen`, the variable `isOpen` itself is not reassigned. It always points to the current state value. Therefore, it is declared using `const`. 
+
+Using `const` for state variables is a common practice in React to prevent accidental reassignment and to ensure that state variables are updated using the appropriate setter functions provided by React.
+
+---
+
+### How `setIsOpen` function updates `isOpen` on state change?
+
+When you call `setIsOpen(newValue)`, React schedules a re-render of the component with the new state value (`newValue`) for `isOpen`. This re-rendering updates the value of `isOpen` to the new value (`newValue`). 
+
+So, while `isOpen` itself is declared using `const` and cannot be reassigned directly, React handles the updating of its value internally when you call the setter function (`setIsOpen`). This is why `const` is used for declaring state variables even though their values change over time due to state updates triggered by setter functions provided by React. 
+
+
 ### Q. Higher-order component?
 
 -> A higher-order component is a function that takes a component and returns a new component.
