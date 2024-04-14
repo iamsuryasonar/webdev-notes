@@ -557,6 +557,21 @@ React only changes the DOM nodes if there’s a difference between renders.
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”
 
+### Q. Phases of component render.
+-> component rendering has three phases.
+
+1. Trigger
+Trigger is basically calling the function component. 
+
+2. Render
+Rendering can be of two types.
+Initial render or rerender on state change. 
+During initial render root component is created, basically DOM nodes are created.
+During rerender the difference between previous render and current render is calculated
+
+4. Commit
+During commit phase changes are updated to actual dom. 
+
 ### Q. working of dom in react (reconciliation in react)
 
 -> In React, the virtual DOM and the process of reconciliation play a crucial role in efficiently updating and rendering the actual DOM. Understanding how React handles the DOM is essential for building performant and responsive web applications.
