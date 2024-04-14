@@ -234,11 +234,11 @@ if (true) {
 }
 console.log(blockScopedVariable);  // Error: blockScopedVariable is not defined
 ```
+### Q. Lexical scope?
+-> Lexical scope refers to the scope where a variable or identifier is defined. 
 
 ### Q. Scope chaining or lexical scoping?
-
 ->
-
 when a variable is not declared within the current scope of a function, the JavaScript engine will look for the variable in outer scopes. This behaviour is known as "lexical scoping" or "scope chaining."
 
 In your example:
