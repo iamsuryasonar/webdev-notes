@@ -44,9 +44,11 @@
     /* grid-auto-rows: 140px; vertically auto childrens if 140px is available*/
     /* grid-auto-rows: minmax(140px, auto); vertically auto childrens if minimum 140px is available and maximum can be content size*/
     /* grid-gap: 20px; gap between each grid*/
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr;*/
     grid-auto-rows: minmax(140px, auto);
     grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* achieve responsiveness without media query */
 }
 
 .grid-item-1 {
