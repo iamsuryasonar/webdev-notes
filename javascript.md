@@ -3130,7 +3130,22 @@ console.log(numbers); // Output: [1, 1, 2, 3, 5]
 ->  
 Boxing is the process in which a primitive value is wrapped in an Object. When a primitive type is treated as an object, e.g., calling the toUpperCase() function, JavaScript would automatically wrap the primitive type into the corresponding object type. This new object type is then linked to the related built-in <.prototype>, so you can use prototype methods on primitive types.
 
-[boxing unboxing in js](https://www.codingninjas.com/studio/library/javascript-boxing-and-unboxing)
+Primitive types don't have methods or properties on them.
+
+Let's see some primitive types in JS. Let's try a number and a string.
+```javascript
+const name = "Doggo"
+const age = 7
+
+console.log(typeof name) // string
+console.log(typeof age) // number
+```
+name has the primitive type string, age is a number. Both of these primitive types should not have any properties or methods on them. Let's check that:
+```javascript
+console.log(name.length) // 5
+console.log(age.toString()) // "7"
+```
+Why does this work and not throw an error? It looks like both of the primitive types are actually objects! But they're not! They just behave like objects because of autoboxing. Whenever we try to access a method or property on a primitive, that primitive is wrapped into an object. That's called autoboxing. Autoboxing will connect the primitive to the related built-in prototype object. In our case that's String.prototype and Number.prototype. This gives us access to the prototype methods and properties.
 
 
 ### Q.  for(let i=0; i&lt;=3; i++){}, explain to me which block does let i belong?
@@ -3241,7 +3256,7 @@ Disadvantage of closure - > Over consumption of memory, since all the referenced
 
 Basically:
 
-closure is a function that returns another function and wraps data.
+When a function is defined, it creates a closure, which includes not only the function's code but also a reference to its lexical environment. This reference maintains access to all variables, parameters, and functions in the scope where the function was defined. When a function is defined within another function, it captures references to the variables in its outer scope. Functions are first-class citizens, meaning they can be passed around as values and assigned to variables. This allows closures (functions with their captured lexical environment) to be returned from functions, passed as arguments to other functions, and stored in data structures like arrays or objects.
 
 ### Q. Api call using fetch
 
