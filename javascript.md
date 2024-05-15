@@ -1888,7 +1888,7 @@ console.log(person.getFullName());
 
 ### Q. This?
 
--> In JavaScript, this refers to the context within which a function is executed. The value of this is determined by how a function is invoked and can vary depending on the calling context. The behaviour of this can be influenced by the way a function is called: as a method, as a function, as a constructor, or using call or apply.
+-> In JavaScript, this refers to the object a function is attached to, in other words, this refers to the context within which a function is executed. The value of this is determined by how a function is invoked and can vary depending on the calling context. The behaviour of this can be influenced by the way a function is called: as a method, as a function, as a constructor, or using call or apply.
 
 The value of this is not static and can change dynamically based on the invocation context. Here are a few common scenarios for this in JavaScript:
 
