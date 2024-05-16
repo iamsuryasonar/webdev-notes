@@ -527,17 +527,10 @@ Conceptually, React does work in two phases:
 - Render phase and
 - Commit phase
 
-  
-- The render phase determines what changes need to be made to e.g. the DOM. During this phase, React calls render and then compares the result to the previous render.
-- The commit phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like componentDidMount and componentDidUpdate during this phase.
+ - The render phase determines what changes need to be made to e.g. the DOM. During this phase, React calls render and then compares the result to the previous render.
+ - The commit phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like componentDidMount and componentDidUpdate during this phase.
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
-
-- Triggering a render (delivering the guest’s order to the kitchen)
-- Rendering the component (preparing the order in the kitchen)
-- Committing to the DOM (placing the order on the table)
-
+RENDER PHASE:
 “Rendering” is React calling your components.
 
 - On initial render, React will call the root component.
@@ -548,6 +541,7 @@ This process is recursive: if the updated component returns some other component
 - During the initial render, React will create the DOM nodes for every elements.
 - During a re-render, React will calculate which of their properties, if any, have changed since the previous render. It won’t do anything with that information until the next step, the commit phase.
 
+COMMIT PHASE:
 After rendering (calling) your components, React will modify the DOM.
 
 - For the initial render, React will use the appendChild() DOM API to put all the DOM nodes it has created on screen.
@@ -555,7 +549,7 @@ After rendering (calling) your components, React will modify the DOM.
   
 React only changes the DOM nodes if there’s a difference between renders. 
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”
+After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”.
 
 Summary- When the state or props of a component change, React takes that part of the DOM (this is the second Virtual DOM) and updates it with the new state or props value. Then, it compares it with the previous Virtual DOM. This process is called reconciliation. It updates the previous Virtual DOM with the new changes. Then, in the commit phase, the minimum changes that were found during reconciliation are performed (appended, removed, prepended, like good old vanilla JS) to the actual DOM. But what if the root (the top-most) component needs to be rerendered? The whole tree will be reconstructed.
 
