@@ -557,6 +557,8 @@ React only changes the DOM nodes if there’s a difference between renders.
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”
 
+Summary- When the state or props of a component change, React takes that part of the DOM (this is the second Virtual DOM) and updates it with the new state or props value. Then, it compares it with the previous Virtual DOM. This process is called reconciliation. It updates the previous Virtual DOM with the new changes. Then, in the commit phase, the minimum changes that were found during reconciliation are performed (appended, removed, prepended, like good old vanilla JS) to the actual DOM. But what if the root (the top-most) component needs to be rerendered? The whole tree will be reconstructed.
+
 ### Q. Phases of component render.
 -> component rendering has three phases.
 
@@ -570,7 +572,9 @@ During initial render root component is created, basically DOM nodes are created
 During rerender the difference between previous render and current render is calculated
 
 4. Commit
-During commit phase changes are updated to actual dom. 
+During commit phase changes are updated to actual dom.
+
+
 
 ### Q. working of dom in react (reconciliation in react)
 
