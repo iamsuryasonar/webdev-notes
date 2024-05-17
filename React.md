@@ -39,14 +39,14 @@
     - [Q. Use of key in react](#q-use-of-key-in-react)
     - [Q. Does react re render child components when parent component re renders?](#q-does-react-re-render-child-components-when-parent-component-re-renders)
     - [Q. Pure components?](#q-pure-components)
-    - [Q. React memo(Component, arePropsEqual?)](#q-react-memocomponent-arepropsequal)
+    - [Q. React.memo(Component, arePropsEqual?)](#q-reactmemocomponent-arepropsequal)
     - [Q. Hooks?](#q-hooks)
-    - [Q. useState()](#q-usestate)
-    - [Q. useEffect()](#q-useeffect)
-    - [Q. useContext()](#q-usecontext)
-    - [Q. useMemo()](#q-usememo)
-    - [Q. useRef()](#q-useref)
-    - [Q. useCallback()](#q-usecallback)
+      - [Q. useState()](#q-usestate)
+      - [Q. useEffect()](#q-useeffect)
+      - [Q. useContext()](#q-usecontext)
+      - [Q. useMemo()](#q-usememo)
+      - [Q. useRef()](#q-useref)
+      - [Q. useCallback()](#q-usecallback)
     - [Q. Higher-order component?](#q-higher-order-component)
     - [Q. Render-prop?](#q-render-prop)
     - [Q. Custom Hooks?](#q-custom-hooks)
@@ -100,8 +100,6 @@
 - [Resources](#resources)
 - [Interview tips -](#interview-tips--)
 - [Git](#git)
-
-
 
 
 # HTML and CSS
@@ -527,7 +525,7 @@ Conceptually, React does work in two phases:
 - Render phase and
 - Commit phase
 
- - The render phase determines what changes need to be made to e.g. the DOM. During this phase, React calls render and then compares the result to the previous render.
+ - The render phase determines what changes  need to be made to e.g. the DOM. During this phase, React calls render and then compares the result to the previous render.
  - The commit phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like componentDidMount and componentDidUpdate during this phase.
 
 RENDER PHASE:
@@ -551,24 +549,8 @@ React only changes the DOM nodes if there’s a difference between renders.
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as “browser rendering”.
 
+
 Summary- When the state or props of a component change, React takes that part of the DOM (this is the second Virtual DOM) and updates it with the new state or props value. Then, it compares it with the previous Virtual DOM. This process is called reconciliation. It updates the previous Virtual DOM with the new changes. Then, in the commit phase, the minimum changes that were found during reconciliation are performed (appended, removed, prepended, like good old vanilla JS) to the actual DOM. But what if the root (the top-most) component needs to be rerendered? The whole tree will be reconstructed.
-
-### Q. Phases of component render.
--> component rendering has three phases.
-
-1. Trigger
-Trigger is basically calling the function component. 
-
-2. Render
-Rendering can be of two types.
-Initial render or rerender on state change. 
-During initial render root component is created, basically DOM nodes are created.
-During rerender the difference between previous render and current render is calculated
-
-4. Commit
-During commit phase changes are updated to actual dom.
-
-
 
 ### Q. working of dom in react (reconciliation in react)
 
@@ -914,7 +896,7 @@ export default App;
 
 
 
-* <span style="text-decoration:underline;">Class Components:</span>
+* Class Components:
 
 Class components are ES6 classes that extend from React.Component. They are the traditional way of creating components in React and have been widely used in the past. Class components have their own local state and lifecycle methods, such as componentDidMount and componentDidUpdate. They are suitable for complex components that require state management, lifecycle methods, and more advanced features.
 
@@ -934,7 +916,7 @@ class MyClassComponent extends Component {
 
 
 
-* <span style="text-decoration:underline;">Functional Components:</span>
+* Functional Components:
 
 Functional components are simpler and more lightweight than class components. They are JavaScript functions that accept props as arguments and return React elements. Functional components do not have their own state or lifecycle methods but are commonly used for presenting UI elements based on props.
 
@@ -1023,10 +1005,10 @@ class MyPureComponent extends React.PureComponent {
 
 In this example, MyPureComponent will only re-render when there are changes in its props or state. If the title and content props remain the same, the component will not re-render even if its parent component re-renders.
 
-In functional components, the concept of a pure component is not directly applicable, as functional components do not have built-in mechanisms for managing their own state changes. However, the concept of a pure component, which aims to minimise unnecessary re-renders, can still be applied to functional components using React.memo.
+In functional components, the concept of a pure component is not directly applicable. However, the concept of a pure component, which aims to minimise unnecessary re-renders, can still be applied to functional components using React.memo higher-order component.
 
 
-### Q. React memo(Component, arePropsEqual?) 
+### Q. React.memo(Component, arePropsEqual?) 
 
 -> Wrap a component in memo to get a memoized version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is a performance optimization, not a guarantee.
 
@@ -1040,19 +1022,19 @@ const SomeComponent = memo(function SomeComponent(props) {
 ```
 
 
-**<span style="text-decoration:underline;">Parameters</span>:**
+**Parameters:**
 
 Component: The component that you want to memoize. The memo does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and forwardRef components, is accepted.
 
 optional (arePropsEqual): A function that accepts two arguments: the component’s previous props, and its new props. It should return true if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return false. Usually, you will not specify this function. By default, React will compare each prop with Object.is.
 
 
-**<span style="text-decoration:underline;">Returns:</span>**
+**Returns:**
 
 
 memo returns a new React component. It behaves the same as the component provided to memo except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
 
-**<span style="text-decoration:underline;">Usage</span>:**
+**Usage:**
 
 Skipping re-rendering when props are unchanged 
 
@@ -1072,7 +1054,7 @@ export default Greeting;
 
 A React component should always have pure rendering logic. This means that it must return the same output if its props, state, and context haven’t changed. By using memo, you are telling React that your component complies with this requirement, so React doesn’t need to re-render as long as its props haven’t changed. Even with memo, your component will re-render if its own state changes or if a context that it’s using changes.
 
-**<span style="text-decoration:underline;">Minimising props changes: </span>**
+***Minimising props changes:***
 
 
 When you use memo, your component re-renders whenever any prop is not shallowly equal to what it was previously. This means that React compares every prop in your component with its previous value using the Object.is comparison. Note that Object.is(3, 3) is true, but Object.is({}, {}) is false.
@@ -1113,15 +1095,13 @@ Hooks are JavaScript functions, but they impose two additional rules:
 * Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
 * Only call Hooks from React function components. Don’t call Hooks from regular JavaScript functions. (There is just one other valid place to call Hooks — your own custom Hooks.)
 
-All hooks in react: 
-
-
-
-* Basic Hooks-
+All hooks in react:  
+Basic Hooks-
 * useState
 * useEffect
-* useContext
-* Additional Hooks-
+* useContext  
+
+Additional Hooks-
 * useReducer
 * useCallback
 * useMemo
@@ -1134,20 +1114,20 @@ All hooks in react:
 * useId
 
 
-### Q. useState()
+#### Q. useState()
 
--> useState is a Hook. We call it inside a function component to add some local state to it. React will preserve this state between re-renders. useState returns a pair: the current state value and a function that lets you update it. You can call this function from an event handler or somewhere else. The only argument to useState is the initial state.
+-> useState is a Hook. We call it inside a function component to add some local state to it. React will preserve this state between re-renders.
 
 ```javascript
 const [age, setAge] = useState(42);
 ```
 
 
-<span style="text-decoration:underline;">useState returns an array with exactly two items:</span>
+useState returns an array with exactly two items:
 
-The current state of this state variable, initially set to the initial state you provided.
+- The current state of this state variable, initially set to the initial state you provided.
 
-The set function that lets you change it to any other value in response to interaction.
+- The set function that lets you change it to any other value in response to interaction.
 
 To update what’s on the screen, call the set function with some next state:
 
@@ -1181,7 +1161,7 @@ function handleClick() {
 It only affects what useState will return starting from the next render.
 
 
-### Q. useEffect()
+#### Q. useEffect()
 
 - componentDidMount
 
@@ -1229,222 +1209,108 @@ return()=>{
 
 -> The Effect Hook, useEffect, adds the ability to perform side effects from a function component. It serves the same purpose as componentDidMount, componentDidUpdate, and componentWillUnmount in React classes, but unified into a single API. 
 
-You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” (or “effects” for short) because they can affect other components and can’t be done during rendering.
+You’ve likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations “side effects” (or “effects” for short, means operations that are outside the scope of react) because they can affect other components and can’t be done during rendering.
 
 When you call useEffect, you’re telling React to run your “effect” function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render — including the first render. Effects may also optionally specify how to “clean up” after them by returning a function.
 
 https://react.dev/learn/lifecycle-of-reactive-effects
 
-### Q. useContext()
+#### Q. useContext()
 
--> useContext is a React Hook that lets you read and subscribe to context from your component.
+-> useContext is a React Hook that lets you read and subscribe to context from your component. 
+- Call useContext at the top level of your component.
 
+- useContext is used to pass data deeply into the tree.
 
+- useContext returns the context value for the context you passed. To determine the context value, React searches the component tree and finds the closest context provider above for that particular context. React automatically re-renders components that read some context if it changes.
+
+- If React can’t find any providers of that particular context in the parent tree, the context value returned by useContext() will be equal to the default value that you specified when you created that context.
+Specify a fallback default value. This way, if you accidentally render some component without a corresponding provider, it won’t break.
 ```javascript
-const value = useContext(SomeContext)
+const ThemeContext = createContext(null); // not preferred
+const ThemeContext = createContext('light'); //prefered
 ```
 
-
-Call useContext at the top level of your component to read and subscribe to context.
-
+Example of useContext:
 
 ```javascript
-import { useContext } from 'react';
+import { useState, useContext, createContext } from 'react';
 
-function MyComponent() {
-  const theme = useContext(ThemeContext);
-  // ...
-```
+const ThemeContext = createContext('light');  // creating context while specifying a fallback value
 
+function ContextHook() {
+    const [theme, setTheme] = useState('light'); // state to track theme changes
 
-**Parameters** 
-
-
-  SomeContext: The context that you’ve previously created (will be discussed below) with createContext. The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
-
-**Returns** 
-
-
-  useContext returns the context value for the calling component. It is determined as the value passed to the closest SomeContext.Provider above the calling component in the tree. If there is no such provider, then the returned value will be the defaultValue you have passed to createContext for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
-
-**Usage** 
-
-Passing data deeply into the tree.
-
-useContext returns the context value for the context you passed. To determine the context value, React searches the component tree and finds the closest context provider above for that particular context.
-
-To pass context to a Button, wrap it or one of its parent components into the corresponding context provider:
-
-<span style="text-decoration:underline;"> Updating a value via context: </span>
-
-
-```javascript
-import { createContext, useContext, useState } from 'react';
-
-//context is created with default value null
-const ThemeContext = createContext(null);
-
-export default function MyApp() {
-  const [theme, setTheme] = useState('light');
-  return (
-    //context is made available to the wrapped components
-    //passing context as an string
-    <ThemeContext.Provider value={theme}>
-      <Form />
-      <label>
-        <input
-          type="checkbox"
-          checked={theme === 'dark'}
-          onChange={(e) => {
-            setTheme(e.target.checked ? 'dark' : 'light')
-          }}
-        />
-        Use dark mode
-      </label>
+    // passing the theme as well as update function down the tree of components
+    return <ThemeContext.Provider value={{ theme, setTheme }}> 
+        <div
+            style={{
+                height: '100svh',
+                backgroundColor: theme === 'light' ? 'white' : 'black',
+                color: theme === 'light' ? 'black' : 'white',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
+        >
+            <Button />
+        </div>
     </ThemeContext.Provider>
-  )
 }
 
-function Form({ children }) {
-  return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
-    </Panel>
-  );
-}
+export default ContextHook;
 
-function Panel({ title, children }) {
-  //using useContext hook we can subscribe to ThemeContext context
-  const theme = useContext(ThemeContext);
-  const className = 'panel-' + theme;
-  return (
-    <section className={className}>
-      <h1>{title}</h1>
-      {children}
-    </section>
-  )
-}
+function Button() {
+    const { theme, setTheme } = useContext(ThemeContext) // application of useContext
 
-function Button({ children }) {
-  //using useContext hook we can subscribe to ThemeContext context
-  const theme = useContext(ThemeContext);
-  const className = 'button-' + theme;
-  return (
-    <button className={className}>
-      {children}
-    </button>
-  );
-}
-```
-
-
-It doesn’t matter how many layers of components there are between the provider and the Button. When a Button anywhere inside of Form calls useContext(ThemeContext), it will receive "dark" as the value.
-
-<span style="text-decoration:underline;">Updating an object via context </span>
-
-
-```javascript
-import { createContext, useContext, useState } from 'react';
-
-const CurrentUserContext = createContext(null);
-
-export default function MyApp() {
-  const [currentUser, setCurrentUser] = useState(null);
-  return (
-    //passing context as an object
-    <CurrentUserContext.Provider
-      value={{
-        currentUser,
-        setCurrentUser
-      }}
+    return <button
+        style={{
+            backgroundColor: theme === 'light' ? 'black' : 'white',
+            color: theme === 'light' ? 'white' : 'black',
+            border: 'none',
+            padding: '7px 20px',
+        }}
+        onClick={() => {
+            theme === 'light' ? setTheme('dark') : setTheme('light')
+        }}
     >
-      <Form />
-    </CurrentUserContext.Provider>
-  );
-}
-
-function Form({ children }) {
-  return (
-    <Panel title="Welcome">
-      <LoginButton />
-    </Panel>
-  );
-}
-
-function LoginButton() {
-  const {
-    currentUser,
-    setCurrentUser
-  } = useContext(CurrentUserContext);
-
-  if (currentUser !== null) {
-    return <p>You logged in as {currentUser.name}.</p>;
-  }
-
-  return (
-    <Button onClick={() => {
-      setCurrentUser({ name: 'Advika' })
-    }}>Log in as Advika</Button>
-  );
-}
-
-function Panel({ title, children }) {
-  return (
-    <section className="panel">
-      <h1>{title}</h1>
-      {children}
-    </section>
-  )
-}
-
-function Button({ children, onClick }) {
-  return (
-    <button className="button" onClick={onClick}>
-      {children}
+        Toggle
     </button>
-  );
 }
 ```
 
-
-<span style="text-decoration:underline;">Specifying a fallback default value </span>
-
-If React can’t find any providers of that particular context in the parent tree, the context value returned by useContext() will be equal to the default value that you specified when you created that context:
-
-
-```javascript
-const ThemeContext = createContext(null);
-```
-
-
-The default value never changes. If you want to update context, use it with state as described above.
-
-Often, instead of null, there is some more meaningful value you can use as a default, for example:
-
-
-```javascript
-const ThemeContext = createContext('light');
-```
-
-
-This way, if you accidentally render some component without a corresponding provider, it won’t break.
 
 Refer for more:  [useContext – React](https://react.dev/reference/react/useContext)
 
 
-### Q. useMemo()
+#### Q. useMemo()
 
-->useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
+-> useMemo is a React Hook that lets you cache the result of a calculation between re-renders. Call useMemo at the top level of your component.
+
+You need to pass two things to useMemo:
+* A calculation function that takes no arguments, like () =>, and returns what you wanted to calculate.
+* A list of dependencies including every value within your component that’s used inside your calculation.
+
+On the initial render, the value you’ll get from useMemo will be the result of calling your calculation.
+
+On every subsequent render, React will compare the dependencies with the dependencies you passed during the last render. If none of the dependencies have changed (compared with Object.is), useMemo will return the value you already calculated before. Otherwise, React will re-run your calculation and return the new value.
+
+In other words, useMemo caches a calculation result between re-renders until its dependencies change.
+
+By default, React will re-run the entire body of your component every time that it re-renders. For example, if this TodoList updates its state or receives new props from its parent, the filterTodos function will re-run:
 
 
 ```javascript
-const cachedValue = useMemo(calculateValue, dependencies)
+function TodoList({ todos, tab, theme }) {
+  const visibleTodos = filterTodos(todos, tab);
+  // ...
+}
 ```
 
+Usually, this isn’t a problem because most calculations are very fast. However, if you’re filtering or transforming a large array, or doing some expensive computation, you might want to skip doing it again if data hasn’t changed. If both todos and tab are the same as they were during the last render, wrapping the calculation in useMemo like below, lets you reuse visibleTodos you’ve already calculated before.
 
-Call useMemo at the top level of your component to cache a calculation between re-renders:
-
+This type of caching is called memoization.
 
 ```javascript
 import { useMemo } from 'react';
@@ -1458,63 +1324,12 @@ function TodoList({ todos, tab }) {
 }
 ```
 
-
-<span style="text-decoration:underline;">Parameters </span>
-
-
-
-* <span style="text-decoration:underline;">calculateValue:</span> The function calculating the value that you want to cache. It should be pure, should take no arguments, and should return a value of any type. React will call your function during the initial render. On next renders, React will return the same value again if the dependencies have not changed since the last render. Otherwise, it will call calculateValue, return its result, and store it so it can be reused later.
-* <span style="text-decoration:underline;">dependencies:</span> The list of all reactive values referenced inside of the calculateValue code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. The list of dependencies must have a constant number of items and be written inline like [dep1, dep2, dep3]. React will compare each dependency with its previous value using the Object.is comparison.
-
-<span style="text-decoration:underline;">Returns </span>
-
-
-On the initial render, useMemo returns the result of calling calculateValue with no arguments.
-
-During next renders, it will either return an already stored value from the last render (if the dependencies haven’t changed), or call calculateValue again, and return the result that calculateValue has returned.
-
-<span style="text-decoration:underline;">Usage</span>
-
-
-You need to pass two things to useMemo:
-
-
-
-* A calculation function that takes no arguments, like () =>, and returns what you wanted to calculate.
-* A list of dependencies including every value within your component that’s used inside your calculation.
-
-    On the initial render, the value you’ll get from useMemo will be the result of calling your calculation.
-
-
-    On every subsequent render, React will compare the dependencies with the dependencies you passed during the last render. If none of the dependencies have changed (compared with Object.is), useMemo will return the value you already calculated before. Otherwise, React will re-run your calculation and return the new value.
-
-
-    In other words, useMemo caches a calculation result between re-renders until its dependencies change.
-
-
-<span style="text-decoration:underline;">Let’s walk through an example to see when this is useful.</span>
-
-By default, React will re-run the entire body of your component every time that it re-renders. For example, if this TodoList updates its state or receives new props from its parent, the filterTodos function will re-run:
-
-
-```javascript
-function TodoList({ todos, tab, theme }) {
-  const visibleTodos = filterTodos(todos, tab);
-  // ...
-}
-```
-
-
-Usually, this isn’t a problem because most calculations are very fast. However, if you’re filtering or transforming a large array, or doing some expensive computation, you might want to skip doing it again if data hasn’t changed. If both todos and tab are the same as they were during the last render, wrapping the calculation in useMemo like earlier lets you reuse visibleTodos you’ve already calculated before.
-
-This type of caching is called memoization.
-
 Note: You should only rely on useMemo as a performance optimization. If your code doesn’t work without it, find the underlying problem and fix it first. Then you may add useMemo to improve performance.
 
 Refer for more: [useMemo – React](https://react.dev/reference/react/useMemo)
 
 
-### Q. useRef()
+#### Q. useRef()
 
 ->useRef is a React Hook that lets you reference a value that’s not needed for rendering.
 
@@ -1523,33 +1338,11 @@ Refer for more: [useMemo – React](https://react.dev/reference/react/useMemo)
 const ref = useRef(initialValue)
 ```
 
-
-<span style="text-decoration:underline;">Parameters</span>:
-
-<span style="text-decoration:underline;">initialValue</span>: The value you want the ref object’s current property to be initially. It can be a value of any type. This argument is ignored after the initial render.
-
-<span style="text-decoration:underline;">Returns</span> 
-
-useRef returns an object with a single property:
-
-<span style="text-decoration:underline;">current:</span> Initially, it’s set to the initialValue you have passed. You can later set it to something else. If you pass the ref object to React as a ref attribute to a JSX node, React will set its current property.
-
-On the next render, useRef will return the same object.
-
-Note: 
-
-
-
-* You can mutate the ref.current property. Unlike state, it is mutable.
-* When you change the ref.current property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-
-<span style="text-decoration:underline;">Usage</span>: 
-
 useRef returns a ref object with a single current property initially set to the initial value you provided.
 
 On the next render, useRef will return the same object. You can change its current property to store information and read it later. This might remind you of state, but there is an important difference.
 
-Changing a ref does not trigger a re-render. This means refs are perfect for storing information that doesn’t affect the visual output of your component. For example, if you need to store an interval ID and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its current property:
+Changing a ref does not trigger a re-render. This means refs are perfect for storing information that doesn’t affect the visual output of your component. For example, if you need to store an interval ID and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its current property.
 
 
 ```javascript
@@ -1560,10 +1353,7 @@ function handleStartClick() {
   intervalRef.current = intervalId;
 }
 ```
-
-
 Later, you can read that interval ID from the ref so that you can call clear that interval:
-
 
 ```javascript
 function handleStopClick() {
@@ -1572,76 +1362,13 @@ function handleStopClick() {
 }
 ```
 
+>Note:  You can mutate the `ref.current` property. Unlike state, `ref.current` is mutable.When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
 
-By using a ref, you ensure that:
-
-You can store information between re-renders (unlike regular variables, which reset on every render).
-
-Changing it does not trigger a re-render (unlike state variables, which trigger a re-render).
-
-The information is local to each copy of your component (unlike the variables outside, which are shared).
-
-Changing a ref does not trigger a re-render, so refs are not appropriate for storing information you want to display on the screen. Use state for that instead. 
-
-Example:
-
-A stopwatch 
-
-This example uses a combination of state and refs. Both startTime and now are state variables because they are used for rendering. But we also need to hold an interval ID so that we can stop the interval on button press. Since the interval ID is not used for rendering, it’s appropriate to keep it in a ref, and manually update it.
-
-
-```javascript
-import { useState, useRef } from 'react';
-
-export default function Stopwatch() {
-  const [startTime, setStartTime] = useState(null);
-  const [now, setNow] = useState(null);
-  const intervalRef = useRef(null);
-
-  function handleStart() {
-    setStartTime(Date.now());
-    setNow(Date.now());
-
-    clearInterval(intervalRef.current);
-    intervalRef.current = setInterval(() => {
-      setNow(Date.now());
-    }, 10);
-  }
-
-  function handleStop() {
-    clearInterval(intervalRef.current);
-  }
-
-  let secondsPassed = 0;
-  if (startTime != null && now != null) {
-    secondsPassed = (now - startTime) / 1000;
-  }
-
-  return (
-    <>
-      <h1>Time passed: {secondsPassed.toFixed(3)}</h1>
-      <button onClick={handleStart}>
-        Start
-      </button>
-      <button onClick={handleStop}>
-        Stop
-      </button>
-    </>
-  );
-}
-```
-
-
-React expects that the body of your component behaves like a pure function:
-
-If the inputs (props, state, and context) are the same, it should return exactly the same JSX.
-
-<span style="text-decoration:underline;">Manipulating the DOM with a ref:</span>
+**Manipulating the DOM with a ref:**
 
 It’s particularly common to use a ref to manipulate the DOM. React has built-in support for this.
 
 First, declare a ref object with an initial value of null:
-
 
 ```javascript
 import { useRef } from 'react';
@@ -1661,7 +1388,7 @@ Then pass your ref object as the ref attribute to the JSX of the DOM node you wa
 ```
 
 
-After React creates the DOM node and puts it on the screen, React will set the current property of your ref object to that DOM node. Now you can access the &lt;input>’s DOM node and call methods like focus():
+After React creates the DOM node and puts it on the screen, React will set the current property of your ref object to that DOM node. Now you can access the `<input>`’s DOM node and call methods like focus():
 
  
 
@@ -1675,9 +1402,7 @@ After React creates the DOM node and puts it on the screen, React will set the c
 
 React will set the current property back to null when the node is removed from the screen.
 
-Note: We could reuse some stateful logic between components using Higher-order component and render-prop. Custom Hooks also let us do this.
-
-### Q. useCallback()
+#### Q. useCallback()
 -> useCallback caches a function between re-renders until its dependencies change.
 
 ```javascript
@@ -1707,36 +1432,11 @@ We know that,
 By default, when a component re-renders, React re-renders all of its children recursively. 
 suppose we have a function that we pass to the child component that is wrapped with memo (which causes it not to render if props are same as previous render).
 
-In JavaScript, a function () {} or () => {} always creates a different function, similar to how the {} object literal always creates a new object. 
+In JavaScript, a `function () {}` or `() => {}` always creates a different function, similar to how the `{}` object literal always creates a new object. 
 
-Memo optimisation did not work since for every parent component re-render child component will have a new function as prop.
+Memo optimisation does not work since for every parent component re-render child component will have a new function as prop.
 
-So, to solve this issue, we have useCallback that caches the function when dependencies are same as before. 
-
-### Why `const` is used before `useState` in React?
-
-In JavaScript, `const` is used to declare variables that cannot be reassigned to a different value. When declaring state variables using `useState` hook in React, `const` is used because the state variable itself (e.g., `isOpen` in the example) will not be reassigned. Instead, the `useState` hook returns an array with two elements: the current state value and a function to update that value. 
-
-Here's a breakdown:
-
-- `const [isOpen, setIsOpen] = useState(false);`
-
-In this line of code:
-- `isOpen` is a constant variable holding the current state value.
-- `setIsOpen` is a function provided by the `useState` hook to update the state value. 
-
-Although the value of `isOpen` can change when the state is updated using `setIsOpen`, the variable `isOpen` itself is not reassigned. It always points to the current state value. Therefore, it is declared using `const`. 
-
-Using `const` for state variables is a common practice in React to prevent accidental reassignment and to ensure that state variables are updated using the appropriate setter functions provided by React.
-
----
-
-### How `setIsOpen` function updates `isOpen` on state change?
-
-When you call `setIsOpen(newValue)`, React schedules a re-render of the component with the new state value (`newValue`) for `isOpen`. This re-rendering updates the value of `isOpen` to the new value (`newValue`). 
-
-So, while `isOpen` itself is declared using `const` and cannot be reassigned directly, React handles the updating of its value internally when you call the setter function (`setIsOpen`). This is why `const` is used for declaring state variables even though their values change over time due to state updates triggered by setter functions provided by React. 
-
+So, to solve this problem, we can use useCallback, which caches the function when dependencies are same as before. 
 
 ### Q. Higher-order component?
 
@@ -1810,7 +1510,7 @@ function Box(props) {
 
 Extra example
 
-```JavaScript
+```javascript
 import React, { useState } from 'react';
 
 // StateProvider functional component
@@ -1911,6 +1611,8 @@ The state of each component is completely independent. Custom Hooks are a way to
 
 Custom Hooks are more of a convention than a feature. If a function’s name starts with ”use” and it calls other Hooks, we say it is a custom Hook. 
 
+>Note: We could reuse some stateful logic between components using Higher-order component and render-prop. Custom Hooks also let us do this.
+
 ### Q. forwardRef?
 
 -> forwardRef lets your component expose a DOM node to the parent component with a ref.
@@ -1932,18 +1634,13 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-
-<span style="text-decoration:underline;">Parameters</span> 
-
-render: The render function for your component. React calls this function with the props and ref that your component received from its parent. The JSX you return will be the output of your component.
-
-<span style="text-decoration:underline;">Returns</span>
+forwardRef takes a function component. React calls this function component with the props and ref that your component should receive from its parent. The JSX you return will be the output of your component.
 
 forwardRef returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by forwardRef is also able to receive a ref prop.
 
-Usage:
+**Usage:**
 
-<span style="text-decoration:underline;">Exposing a DOM node to the parent component :</span>
+Exposing a DOM node to the parent component :
 
 By default, each component’s DOM nodes are private. However, sometimes it’s useful to expose a DOM node to the parent—for example, to allow focusing it. To opt in, wrap your component definition into forwardRef():
 
@@ -2004,7 +1701,7 @@ function Form() {
 ```
 
 
-This Form component passes a ref to MyInput. The MyInput component forwards that ref to the &lt;input> browser tag. As a result, the Form component can access that &lt;input> DOM node and call focus() on it.
+This Form component passes a ref to MyInput. The MyInput component forwards that ref to the `<input>` browser tag. As a result, the Form component can access that `<input>` DOM node and call `focus()` on it.
 
 
 ### Q. Context api?
@@ -2405,11 +2102,11 @@ You can apply the same concept to other event handlers, such as onSubmit for for
 
 ```javascript
 const markup = { __html: '<p>some raw html</p>' };
-return <div dangerouslySetInnerHTML={markup} />;
+return <div dangerouslySetInnerHTML={markup}></div> ;
 ```
 
 
-dangerouslySetInnerHTML: An object of the form { __html: '&lt;p>some html&lt;/p>' } with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
+dangerouslySetInnerHTML: An object of the form `{ __html:'&lt;p>some html&lt;/p>' }` with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
 
 ### Q. Three important react patterns.
 ->
@@ -2559,7 +2256,7 @@ const store = createStore(counterReducer);
     * When the UI is first rendered, UI components access the current state of the Redux store, and use that data to decide what to render. They also subscribe to any future store updates so they can know if the state has changed.
 * Updates:
     * Something happens in the app, such as a user clicking a button
-    * The app code dispatches an action to the Redux store, like dispatch({type: 'counter/incremented'})
+    * The app code dispatches an action to the Redux store, like `dispatch({type: 'counter/incremented'})`
     * The store runs the reducer function again with the previous state and the current action, and saves the return value as the new state
     * The store notifies all parts of the UI that are subscribed that the store has been updated
     * Each UI component that needs data from the store checks to see if the parts of the state they need have changed.
@@ -2568,7 +2265,7 @@ const store = createStore(counterReducer);
 
 Redux data flow diagram
 
-![alt_text](images/reduxflow.gif "image_tooltip")
+![alt_text](./images/reduxflow.gif "image_tooltip")
 
 ### Q. Redux set up
 -> 
@@ -2583,8 +2280,8 @@ Redux data flow diagram
     * configureStore accepts a reducer function as a named argument
     * configureStore automatically sets up the store with good default settings
 * Provide the Redux store to the React application components
-    * Put a React Redux &lt;Provider> component around your &lt;App />
-    * Pass the Redux store as &lt;Provider store= {store}>
+    * Put a React Redux `&lt;Provider> component around your &lt;App />`
+    * Pass the Redux store as `&lt;Provider store= {store}>`
 * Create a Redux "slice" reducer with createSlice
     * Call createSlice with a string name, an initial state, and named reducer functions
     * Reducer functions may "mutate" the state using Immer
@@ -2695,7 +2392,7 @@ The basic idea is that middleware can extend the functionality of Redux by provi
 
 Middleware provides a third-party extension point between dispatching an action and handing the action off to the reducer:
 
-[ Action ] <-> [ Middleware ] <-> [ Dispatcher ]
+`[ Action ] <-> [ Middleware ] <-> [ Dispatcher ]`
 
 Examples of middleware include logging, crash reporting, routing, handling asynchronous requests, etc.
 
@@ -2772,7 +2469,7 @@ We know that actions are plain objects with a type field, the type field is alwa
 
 The answer is we don't have to define it, Redux toolkit does that for us.
 Redux Toolkit has a function called createSlice, which takes care of the work of generating action type strings, action creator functions, and action objects. All you have to do is define a name for this slice, write an object that has some reducer functions in it, and it generates the corresponding action code automatically.
-The string from the name option is used as the first part of each action type, and the key name of each reducer function is used as the second part. So, the "counter" name + the "increment" reducer function generated an action type of {type: "counter/increment"}.
+The string from the name option is used as the first part of each action type, and the key name of each reducer function is used as the second part. So, the "counter" name + the "increment" reducer function generated an action type of `{type: "counter/increment"}`.
 
 #### But what about action creators?
 Well, createSlice automatically generates action creators with the same names as the reducer functions we wrote. 
@@ -3504,6 +3201,9 @@ Mistakes
 Focus on logical implementation with a working model first. This is what Interviewers care about.
 
 # Git
+
+![alt_text](./images/gitcheatsheet.png "image_tooltip")
+
 
 ![alt_text](images/gitcheatsheet.png "image_tooltip")
 
