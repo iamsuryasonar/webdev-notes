@@ -1,7 +1,4 @@
 - [HTML and CSS](#html-and-css)
-- [React terms and concepts](#react-terms-and-concepts)
-- [React practice problem](#react-practice-problem)
-- [HTML and CSS](#html-and-css-1)
     - [Q. Ways to center a div?](#q-ways-to-center-a-div)
     - [Q. Media queries?](#q-media-queries)
     - [Q. CSS Box model?](#q-css-box-model)
@@ -14,7 +11,7 @@
     - [Q. Bundler(webpack and parcel)](#q-bundlerwebpack-and-parcel)
     - [Q.JSX?](#qjsx)
     - [Q. Phases of react.](#q-phases-of-react)
-    - [Q. working of dom in react (reconciliation in react)](#q-working-of-dom-in-react-reconciliation-in-react)
+    - [Q. Working of dom in react (reconciliation in react)](#q-working-of-dom-in-react-reconciliation-in-react)
     - [Q. React fiber?](#q-react-fiber)
     - [Q. ReactDOM.render()?](#q-reactdomrender)
     - [Q. Components?](#q-components)
@@ -56,7 +53,7 @@
     - [Q. startTransition](#q-starttransition)
     - [Q. Code splitting?](#q-code-splitting)
     - [Q. Lazy-loading components and Suspense](#q-lazy-loading-components-and-suspense)
-    - [Q. \<StrictMode\>](#q-strictmode)
+    - [Q. `<StrictMode>`](#q-strictmode)
     - [Q. Pagination?](#q-pagination)
     - [Q. Infinite Scroll pagination](#q-infinite-scroll-pagination)
     - [Q. preventDefault()](#q-preventdefault)
@@ -100,125 +97,10 @@
 - [Resources](#resources)
 - [Interview tips -](#interview-tips--)
 - [Git](#git)
+- [HTML and CSS](#html-and-css-1)
+- [React terms and concepts](#react-terms-and-concepts)
+- [React practice problem](#react-practice-problem)
 
-
-# HTML and CSS
-
-* form and validation 
-* ways to centre a div
-* media queries 
-* css box model
-* position 
-* Flex
-* grid template and repeat function 
-* localstorage, session storage, cookie and index db.
-
-
-# React terms and concepts
-
-* spa meaning
-* bundler(webpack and parcel)
-* Jsx
-* working of dom in react (reconciliation in react, virtual dom)
-* ReactDOM.render()
-* components 
-* stateful vs stateless component 
-* props
-* prop drilling
-* fragment
-* component lifecycle -  lifecycle events
-* element vs component
-* contextual rendering
-* send data from child to parent 
-* counter app
-* fruit app
-* use of keys in react
-* pure component (in class component)
-* react memo - memoised component 
-* mixins and higher order components (both are used for reusable behaviour that can be shared among multiple components. )
-* class based vs functional components
-* difference between mounting and rendering 
-* Hooks
-* useState
-* useEffect
-* useContext
-* useMemo
-* useRef
-* refs - reference
-* higher order components
-* render prop
-* forward refs
-* custom hooks
-* how do setTimeout reacts in useEffect hook
-* context api
-* synthetic events
-* react fibre
-* startTransition()
-* performance optimisation in react
-* code splitting
-* lazy loading and suspense 
-* react strictmode
-* react developer tool
-* react router - https://www.youtube.com/watch?v=Ul3y1LXxzdU&ab_channel=WebDevSimplified
-* handle protected routes
-* how to manage nested routes in a role based routing
-* redux
-* middlewares in redux
-* redux thunk vs saga
-* interceptor in react
-* Axios
-* pagination
-* preventDefault()
-* dengerouslySetInnerHTML
-* jwt - json web token
-
-
-# React practice problem
-
-
-
-* Build Counter app
-* Shopping cart in react js
-* Dark mode - light mode
-* file explorer 
-* Flatten an array
-* Merge sort
-* Implement promise.all
-* Todo list
-* Build a traffic light where the lights switch from green to yellow to red after predetermined intervals and loop indefinitely. Each light should be lit for the following durations:
-* Red light: 4000ms
-* Yellow light: 500ms
-* Green light: 3000ms
-* Count number of times a value occurred in an array
-* Debounce - limit number of times a function executes, by delaying the execution by specified time.
-* Build Tabs component that displays a list of tab elements and one content at a time.
-* Build calculator
-* Build Holy grail layout- The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.
-* Build tic tac toe
-* Build a component that allows transferring of items between two lists, bulk selection/ deselection of items, and adding of new items.
-* Build a slider, on increasing/ decreasing the slider value should reflect in a pieChart.
-* Merge two object together.
-* Create a stopwatch
-* Star Rating- build a stat rating component that shows a row of star icons for users to select the number of filled stars corresponding to the rating.
-* Generate a table of numbers given the rows and columns.
-* Ability to call an API and parse JSON.
-* Ability to handle promises.
-* Ability to put data into state and use that to render on the page.
-* Basic CSS (flexbox, border styles, background, centering a div on page)
-* Ability  to handle events and gather target's value from input boxes (event.target.value)
-* Ability to use hooks such as useState, useEffect.
-* Ability to pass the right dependency array to useEffect.
-* Create an app to fetch data from a JSON API. Use this data to render on the page. Provide ability to paginate the results 
-* Create a typeahead component.(autocomplete using array of names)
-* Given a mock, use React to render on the page. eg. 10 box are there with a flip button on it to reveal an image on it.
-* Infinite scrolling app
-* Create a form that gathers user's data and sends it to the server.
-* Create a tic tac toe game.
-* Create a slideshow type app. The data of slides could be given. It contains an image url, and the title of the slide. Left and Right navigation buttons are needed.
-* Create a form app that has a different state of UI when a field is selected, has value or is visited. (Uses onFocus, onBlur events)
-* Create a ticker that increments value every second.
-* Create an app that allows user to click a button 5 times, and times them out afterwards.
-* Create an app that uses debouncing / throttling.
 
 
 # HTML and CSS
@@ -227,9 +109,6 @@
 ### Q. Ways to center a div?
 
 -> 
-
-
-
 * Using Flexbox (for both horizontal and vertical centering):
 
 ```css
@@ -362,7 +241,7 @@ Understanding the CSS box model is essential for designing and laying out web pa
 
 ### Q. Position?
 
--> In CSS, the position property is used to specify the positioning behaviour of an element within its containing element or the viewport. The position property can take several values, each of which controls how the element is positioned and interacts with other elements on the page. The different values for the position property are:
+-> The position property is used to specify the positioning behaviour of an element within its containing element or the viewport. The position property can take several values, each of which controls how the element is positioned and interacts with other elements on the page. The different values for the position property are:
 
 
 
@@ -375,20 +254,20 @@ Understanding the CSS box model is essential for designing and laying out web pa
 
 ### Q. flexbox?
 
--> In CSS, Flexbox (Flexible Box) is a layout model that provides an efficient way to distribute space among items in a container, even when their size is unknown or dynamic. Flexbox is designed to simplify the process of creating flexible and responsive layouts without using float or positioning properties. It offers a more effective way to align, distribute, and reorder elements within a container.
+-> Flexbox (Flexible Box) is a layout model that provides an efficient way to distribute space among items in a container, even when their size is unknown or dynamic. Flexbox is designed to simplify the process of creating flexible and responsive layouts without using float or positioning properties. It offers a more effective way to align, distribute, and reorder elements within a container.
 
 To use Flexbox, you apply the display: flex property to the container (parent) element. This allows the child elements to become flexible items that can be easily manipulated using various Flexbox properties. Some of the key properties used in Flexbox include:
 
 
 
 * flex-direction: Defines the direction in which the flex items are placed in the flex container. It can be set to row, row-reverse, column, or column-reverse.
-* 
+  
 * justify-content: Aligns flex items along the main axis of the flex container. It can be set to flex-start, flex-end, center, space-between, space-around, or space-evenly.
-* 
+  
 * align-items: Aligns flex items along the cross axis of the flex container. It can be set to stretch, flex-start, flex-end, center, or baseline.
-* 
+  
 * flex-wrap: Specifies whether flex items should wrap or not if they can't fit in the container along the main axis. It can be set to nowrap, wrap, or wrap-reverse.
-* 
+  
 * align-content: Aligns multiple lines of flex items along the cross axis. It is similar to align-items but it aligns lines of items instead of individual items.
 
 
@@ -434,11 +313,6 @@ Each of these storage mechanisms has its strengths and limitations, and the choi
 
 
 # React  questions and answers  
-
-https://www.newline.co/fullstack-react/30-days-of-react/
-
-https://www.educative.io/courses/building-teslas-battery-range-calculator-with-react-and-redux
-
 
 ### Q. SPA?
 
@@ -492,7 +366,7 @@ Each JSX element is just syntactic sugar for calling
 ```javascript
 React.createElement(component, props, ...children)
 ```
-. So, anything you can do with JSX can also be done with just plain JavaScript.
+So, anything you can do with JSX can also be done with just plain JavaScript.
 
 For example, this code written with JSX:
 ```javascript
@@ -552,7 +426,7 @@ After rendering is done and React updated the DOM, the browser will repaint the 
 
 Summary- When the state or props of a component change, React takes that part of the DOM (this is the second Virtual DOM) and updates it with the new state or props value. Then, it compares it with the previous Virtual DOM. This process is called reconciliation. It updates the previous Virtual DOM with the new changes. Then, in the commit phase, the minimum changes that were found during reconciliation are performed (appended, removed, prepended, like good old vanilla JS) to the actual DOM. But what if the root (the top-most) component needs to be rerendered? The whole tree will be reconstructed.
 
-### Q. working of dom in react (reconciliation in react)
+### Q. Working of dom in react (reconciliation in react)
 
 -> In React, the virtual DOM and the process of reconciliation play a crucial role in efficiently updating and rendering the actual DOM. Understanding how React handles the DOM is essential for building performant and responsive web applications.
 
@@ -672,7 +546,7 @@ function LoginForm() {
 Uncontrolled components have a few defining characteristics:
 - Using ref to get values directly from the DOM: Instead of using an event handler to read the input’s value, you can obtain the value directly through ref.
 - Reduced reliance on React’s state: Since these components don’t synchronize their state with React’s state mechanism, they might feel more familiar to developers who’ve worked with vanilla JavaScript.
-- 
+  
 ```javascript
   import React, { useRef } from "react";
 
@@ -765,7 +639,7 @@ By implementing one of these solutions, you can reduce the complexity of passing
 
 ### Q. Fragment?
 
--> Use Fragment, or the equivalent &lt;>...&lt;/> syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
+-> Use Fragment, or the equivalent `<>...</>` syntax, to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using a Fragment you can group multiple elements together and then return them as a group:
 
 
 ```javascript
@@ -914,11 +788,11 @@ class MyClassComponent extends Component {
 ```
 
 
-
-
 * Functional Components:
 
-Functional components are simpler and more lightweight than class components. They are JavaScript functions that accept props as arguments and return React elements. Functional components do not have their own state or lifecycle methods but are commonly used for presenting UI elements based on props.
+Functional components are simpler and more lightweight than class components. They are JavaScript functions that accept props as arguments and return React elements. Functional components did not have their own state or lifecycle methods but were commonly used for presenting UI elements based on props.
+
+With the introduction of React Hooks, functional components can now manage local state and lifecycle aspects as well, making them more powerful and capable of handling complex logic that was previously exclusive to class components. Functional components are preferred for simpler components, while class components are still useful for more complex components that require state management and lifecycle methods.
 
 Example of a functional component:
 
@@ -929,10 +803,6 @@ const MyFunctionalComponent = (props) => {
   return <h1>Hello, I am a functional component!</h1>;
 };
 ```
-
-
-With the introduction of React Hooks, functional components can now manage local state and lifecycle aspects as well, making them more powerful and capable of handling complex logic that was previously exclusive to class components. Functional components are preferred for simpler components, while class components are still useful for more complex components that require state management and lifecycle methods.
-
 
 ### Q. How do we send data from child to parent in react js
 
@@ -1011,7 +881,7 @@ In functional components, the concept of a pure component is not directly applic
 ### Q. React.memo(Component, arePropsEqual?) 
 
 -> Wrap a component in memo to get a memoized version of that component. This memoized version of your component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is a performance optimization, not a guarantee.
-
+Basically, memo is used to skip re-rendering when props are not changed. React normally re-renders a component whenever its parent re-renders. With memo, we can create a component that React will not re-render when its parent re-renders so long as its new props are the same as the old props. Such a component is said to be memoized.
 
 ```javascript
 import { memo } from 'react';
@@ -1021,24 +891,11 @@ const SomeComponent = memo(function SomeComponent(props) {
 });
 ```
 
+- memo takes the component that you want to memoize as parameter. The memo does not modify this component, but returns a new memoized component instead. Any valid React component, including functions and forwardRef components, is accepted.
 
-**Parameters:**
+- optionaly meno also takes a function that accepts two arguments: the component’s previous props, and its new props. It should return true if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return false. Usually, you will not specify this function. By default, React will compare each prop with Object.is.
 
-Component: The component that you want to memoize. The memo does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and forwardRef components, is accepted.
-
-optional (arePropsEqual): A function that accepts two arguments: the component’s previous props, and its new props. It should return true if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return false. Usually, you will not specify this function. By default, React will compare each prop with Object.is.
-
-
-**Returns:**
-
-
-memo returns a new React component. It behaves the same as the component provided to memo except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
-
-**Usage:**
-
-Skipping re-rendering when props are unchanged 
-
-React normally re-renders a component whenever its parent re-renders. With memo, you can create a component that React will not re-render when its parent re-renders so long as its new props are the same as the old props. Such a component is said to be memoized.
+- memo returns a new React component. It behaves the same as the component provided to memo except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
 
 To memoize a component, wrap it in memo and use the value that it returns in place of your original component:
 
@@ -1054,12 +911,11 @@ export default Greeting;
 
 A React component should always have pure rendering logic. This means that it must return the same output if its props, state, and context haven’t changed. By using memo, you are telling React that your component complies with this requirement, so React doesn’t need to re-render as long as its props haven’t changed. Even with memo, your component will re-render if its own state changes or if a context that it’s using changes.
 
-***Minimising props changes:***
+**Minimising props changes:**
 
+When you use memo, your component re-renders whenever any prop is not shallowly equal to what it was previously. This means that React compares every prop in your component with its previous value using the Object.is comparison. Note that `Object.is(3, 3)` is true, but `Object.is({}, {})` is false.
 
-When you use memo, your component re-renders whenever any prop is not shallowly equal to what it was previously. This means that React compares every prop in your component with its previous value using the Object.is comparison. Note that Object.is(3, 3) is true, but Object.is({}, {}) is false.
-
-To get the most out of memo, minimise the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using useMemo:
+To get the most out of memo, minimise the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using useMemo (more on it below):
 
 
 ```javascript
@@ -1081,7 +937,7 @@ const Profile = memo(function Profile({ person }) {
 ```
 
 
-Note: class components can opt into this same behaviour by extending pure component from react
+> Note: class components can opt into this same behaviour by extending pure component from react
 
 
 ### Q. Hooks?
@@ -1145,9 +1001,7 @@ The set function returned by useState lets you update the state to a different v
 
 The set function only updates the state variable for the next render. If you read the state variable after calling the set function, you will still get the old value that was on the screen before your call.
 
-Note: 
-
-Calling the set function does not change the current state in the already executing code:
+> Note: Calling the set function does not change the current state in the already executing code:
 
 
 ```javascript
@@ -1900,11 +1754,9 @@ function Editor() {
 
 
 
-### Q. &lt;StrictMode>
+### Q. `<StrictMode>`
 
-->
-
-&lt;StrictMode> lets you find common bugs in your components early during development.
+-> `<StrictMode>` lets you find common bugs in your components early during development.
 
 
 ```javascript
@@ -2063,7 +1915,7 @@ export default InfinitePagination;
 
 ### Q. preventDefault()
 
--> In React, you can prevent the default behaviour of an event by calling the preventDefault() method on the event object. This is commonly used with event handlers like onClick for links or form submissions to prevent the default action associated with the event, such as navigating to a new page or submitting a form.
+-> In React, you can prevent the default behaviour of an event by calling the `preventDefault()` method on the event object. This is commonly used with event handlers like onClick for links or form submissions to prevent the default action associated with the event, such as navigating to a new page or submitting a form.
 
 Here's an example of how to use preventDefault with an onClick event:
 
@@ -2091,7 +1943,7 @@ export default MyComponent;
 ```
 
 
-In this example, when the link is clicked, the handleClick function is called, and within that function, e.preventDefault() is called to prevent the default behaviour of the &lt;a> element, which is navigating to the URL specified in the href attribute.
+In this example, when the link is clicked, the handleClick function is called, and within that function, `e.preventDefault()` is called to prevent the default behaviour of the `<a>` element, which is navigating to the URL specified in the href attribute.
 
 You can apply the same concept to other event handlers, such as onSubmit for forms or onKeyDown for input elements, to prevent their default behaviours as needed. Just make sure to pass the event object (usually named e or event) as a parameter to the event handler function.
 
@@ -2106,7 +1958,7 @@ return <div dangerouslySetInnerHTML={markup}></div> ;
 ```
 
 
-dangerouslySetInnerHTML: An object of the form `{ __html:'&lt;p>some html&lt;/p>' }` with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
+dangerouslySetInnerHTML: An object of the form `{ __html:'<p>some html</p>' }` with a raw HTML string inside. Overrides the innerHTML property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn’t trusted (for example, if it’s based on user data), you risk introducing an XSS vulnerability.
 
 ### Q. Three important react patterns.
 ->
@@ -2280,8 +2132,8 @@ Redux data flow diagram
     * configureStore accepts a reducer function as a named argument
     * configureStore automatically sets up the store with good default settings
 * Provide the Redux store to the React application components
-    * Put a React Redux `&lt;Provider> component around your &lt;App />`
-    * Pass the Redux store as `&lt;Provider store= {store}>`
+    * Put a React Redux `<Provider> component around your `<App />`
+    * Pass the Redux store as `<Provider store= {store}>`
 * Create a Redux "slice" reducer with createSlice
     * Call createSlice with a string name, an initial state, and named reducer functions
     * Reducer functions may "mutate" the state using Immer
@@ -2572,7 +2424,7 @@ The builder object in extraReducers provides methods that let us define addition
 - builder.addCase(actionCreator, reducer): defines a case reducer that handles a single known action type based on either an RTK action creator or a plain action type string
 - builder.addMatcher(matcher, reducer): defines a case reducer that can run in response to any action where the matcher function returns true
 - builder.addDefaultCase(reducer): defines a case reducer that will run if no other case reducers were executed for this action.
-- You can chain these together, like builder.addCase().addCase().addMatcher().addDefaultCase(). If multiple matchers match the action, they will run in the order they were defined.
+- You can chain these together, like `builder.addCase().addCase().addMatcher().addDefaultCase()`. If multiple matchers match the action, they will run in the order they were defined.
 
 ```javascript
 export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
@@ -2607,7 +2459,7 @@ const postsSlice = createSlice({
 We'll handle all three action types that could be dispatched by the thunk, based on the Promise we returned:
 
 - When the request starts, we'll set the status enum to 'loading'
-- If the request succeeds, we mark the status as 'succeeded', and add the fetched posts to state.posts
+- If the request succeeds, we mark the status as 'succeeded', and add the fetched posts to `state.posts`
 - If the request fails, we'll mark the status as 'failed', and save any error message into the state so we can display it.
 
 # Problems
@@ -2773,7 +2625,7 @@ The depth of nesting is unknown and can vary for different objects.
 Implement the React component to render the nested list based on the provided data.
 
 Example Data:
-```
+```javascript
 const data = [
   {
     name: "Item 1",
@@ -3019,6 +2871,7 @@ export default function OutsideAlerter() {
 
 ## Extra question to prepare- 
 
+
 - How can we fetch API data without using useEffect hook?
 - What are the security measures which should be considered during development?
 - Can we return setData inside a component?
@@ -3082,6 +2935,9 @@ export default function OutsideAlerter() {
 - Implement the Promise.all function
 - Flatten a nested JavaScript array without using Array.prototype.flat()
 
+https://www.newline.co/fullstack-react/30-days-of-react/
+
+https://www.educative.io/courses/building-teslas-battery-range-calculator-with-react-and-redux
 
 # Resources
 
@@ -3197,7 +3053,7 @@ Mistakes
 * File structure
 * Beautifying Ul
 * Breaking Ul to 20, 30 useless components
-* 
+
 Focus on logical implementation with a working model first. This is what Interviewers care about.
 
 # Git
@@ -3205,5 +3061,120 @@ Focus on logical implementation with a working model first. This is what Intervi
 ![alt_text](./images/gitcheatsheet.png "image_tooltip")
 
 
-![alt_text](images/gitcheatsheet.png "image_tooltip")
+
+
+# HTML and CSS
+
+* form and validation 
+* ways to centre a div
+* media queries 
+* css box model
+* position 
+* Flex
+* grid template and repeat function 
+* localstorage, session storage, cookie and index db.
+
+# React terms and concepts
+
+* spa meaning
+* bundler(webpack and parcel)
+* Jsx
+* working of dom in react (reconciliation in react, virtual dom)
+* ReactDOM.render()
+* components 
+* stateful vs stateless component 
+* props
+* prop drilling
+* fragment
+* component lifecycle -  lifecycle events
+* element vs component
+* contextual rendering
+* send data from child to parent 
+* counter app
+* fruit app
+* use of keys in react
+* pure component (in class component)
+* react memo - memoised component 
+* mixins and higher order components (both are used for reusable behaviour that can be shared among multiple components. )
+* class based vs functional components
+* difference between mounting and rendering 
+* Hooks
+* useState
+* useEffect
+* useContext
+* useMemo
+* useRef
+* refs - reference
+* higher order components
+* render prop
+* forward refs
+* custom hooks
+* how do setTimeout reacts in useEffect hook
+* context api
+* synthetic events
+* react fibre
+* startTransition()
+* performance optimisation in react
+* code splitting
+* lazy loading and suspense 
+* react strictmode
+* react developer tool
+* react router - https://www.youtube.com/watch?v=Ul3y1LXxzdU&ab_channel=WebDevSimplified
+* handle protected routes
+* how to manage nested routes in a role based routing
+* redux
+* middlewares in redux
+* redux thunk vs saga
+* interceptor in react
+* Axios
+* pagination
+* preventDefault()
+* dengerouslySetInnerHTML
+* jwt - json web token
+
+
+# React practice problem
+
+* Build Counter app
+* Shopping cart in react js
+* Dark mode - light mode
+* file explorer 
+* Flatten an array
+* Merge sort
+* Implement promise.all
+* Todo list
+* Build a traffic light where the lights switch from green to yellow to red after predetermined intervals and loop indefinitely. Each light should be lit for the following durations:
+* Red light: 4000ms
+* Yellow light: 500ms
+* Green light: 3000ms
+* Count number of times a value occurred in an array
+* Debounce - limit number of times a function executes, by delaying the execution by specified time.
+* Build Tabs component that displays a list of tab elements and one content at a time.
+* Build calculator
+* Build Holy grail layout- The Holy Grail layout is a famous CSS page layout that has traditionally been hard to implement. It consists of a header, footer, and three columns. The left column contains navigation items, the middle column contains the page contents, and the right column contains ads.
+* Build tic tac toe
+* Build a component that allows transferring of items between two lists, bulk selection/ deselection of items, and adding of new items.
+* Build a slider, on increasing/ decreasing the slider value should reflect in a pieChart.
+* Merge two object together.
+* Create a stopwatch
+* Star Rating- build a stat rating component that shows a row of star icons for users to select the number of filled stars corresponding to the rating.
+* Generate a table of numbers given the rows and columns.
+* Ability to call an API and parse JSON.
+* Ability to handle promises.
+* Ability to put data into state and use that to render on the page.
+* Basic CSS (flexbox, border styles, background, centering a div on page)
+* Ability  to handle events and gather target's value from input boxes (event.target.value)
+* Ability to use hooks such as useState, useEffect.
+* Ability to pass the right dependency array to useEffect.
+* Create an app to fetch data from a JSON API. Use this data to render on the page. Provide ability to paginate the results 
+* Create a typeahead component.(autocomplete using array of names)
+* Given a mock, use React to render on the page. eg. 10 box are there with a flip button on it to reveal an image on it.
+* Infinite scrolling app
+* Create a form that gathers user's data and sends it to the server.
+* Create a tic tac toe game.
+* Create a slideshow type app. The data of slides could be given. It contains an image url, and the title of the slide. Left and Right navigation buttons are needed.
+* Create a form app that has a different state of UI when a field is selected, has value or is visited. (Uses onFocus, onBlur events)
+* Create a ticker that increments value every second.
+* Create an app that allows user to click a button 5 times, and times them out afterwards.
+* Create an app that uses debouncing / throttling.
 
