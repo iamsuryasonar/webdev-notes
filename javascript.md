@@ -666,6 +666,7 @@ const originalObj = { name: 'John', age: 30,address:{
   city:'mumbai'
 }};
 const shallowCopy = Object.assign({}, originalObj);
+const shallowCopy2 = {...originalObj} // using spread operator
 shallowCopy.address.city = 'delhi';
 console.log(originalObj.address.city); // Output: delhi
 ```
@@ -686,9 +687,9 @@ In the above example, the greet function has two parameters: name and message. T
 
 ### Q. Is javascript pass by value or pass by reference?
 
--> It behaves differently for variables and objects.
+-> It behaves differently for primitives and Non-primitives(objects).
 
-for variables it is pass by value. but for objects it is passed by reference.
+for primitives it is pass by value. but for non-primitives it is passed by reference.
 
 eg:
 
