@@ -234,6 +234,85 @@ if (true) {
 }
 console.log(blockScopedVariable);  // Error: blockScopedVariable is not defined
 ```
+
+### Module scope
+-> Modules have their own scope in javascript, which is separate from the global scope. This means that variables, functions, and classes defined in a module are not accessible outside the module unless they are explicitly exported. Similarly, to use variables, functions, or classes from another module, they must be explicitly imported.
+
+Key Features of Module Scope in JavaScript:
+
+ - Encapsulation:
+   - Variables, functions, and classes defined in a module are private to that module by default.
+   - This helps to avoid polluting the global scope and prevents name collisions.
+ - Exports and Imports:
+   - To make functions, variables, or classes available outside the module, you use the export keyword.
+   - To use functions, variables, or classes from another module, you use the import keyword.
+ - Top-Level Scope:
+   - In modules, top-level this is undefined, unlike in scripts where top-level this refers to the global object.
+   - Top-level variables and functions are not added to the global object.
+
+
+```javascript
+// Private to this module
+const PI = 3.14159;
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+// Exporting functions to be used in other modules
+export { add, subtract };
+```
+
+
+```javascript
+import { add, subtract } from './math.js';
+
+console.log(add(5, 3)); // 8
+console.log(subtract(5, 3)); // 2
+
+// PI is not accessible here because it was not exported
+// console.log(PI); // ReferenceError: PI is not defined
+```
+
+**Module Syntax**
+
+***Exporting:***
+
+- Named Exports:
+```javascript
+export const name = 'Alice';
+export function greet() { console.log('Hello'); }
+```
+- Default Export:
+```javascript
+export default function() { console.log('Default export'); }
+```
+
+***Importing:***
+
+- Named Imports:
+```javascript
+import { name, greet } from './module.js';
+```
+
+- Importing Everything:
+
+```javascript
+import * as myModule from './module.js';
+console.log(myModule.name);
+myModule.greet();
+````
+- Default Import:
+
+```javascript
+import myDefaultFunction from './module.js';
+myDefaultFunction();
+```
+
 ### Q. Lexical scope?
 -> Lexical scope refers to the scope where a variable or identifier is defined. 
 
@@ -587,6 +666,7 @@ const originalObj = { name: 'John', age: 30,address:{
   city:'mumbai'
 }};
 const shallowCopy = Object.assign({}, originalObj);
+const shallowCopy2 = {...originalObj} // using spread operator
 shallowCopy.address.city = 'delhi';
 console.log(originalObj.address.city); // Output: delhi
 ```
@@ -607,9 +687,9 @@ In the above example, the greet function has two parameters: name and message. T
 
 ### Q. Is javascript pass by value or pass by reference?
 
--> It behaves differently for variables and objects.
+-> It behaves differently for primitives and Non-primitives(objects).
 
-for variables it is pass by value. but for objects it is passed by reference.
+for primitives it is pass by value. but for non-primitives it is passed by reference.
 
 eg:
 
